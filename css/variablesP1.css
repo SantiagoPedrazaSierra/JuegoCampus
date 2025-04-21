@@ -1,0 +1,13 @@
+:root{
+    --color-1: #E5E5E5;
+}
+
+@font-face {
+    font-family:"PressStart2P";
+    src: url(../storade/font/PressStart2P-Regular.ttf);
+}
+@font-face {
+    font-family:"Mulish-SemiBold";
+    src: url(../storade/font/Mulish-SemiBold.ttf);
+}
+
