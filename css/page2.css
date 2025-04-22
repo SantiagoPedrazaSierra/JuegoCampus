@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: 0px solid tomato; /* Depuración visual */
+
 }
 
 body {
@@ -15,9 +17,26 @@ body {
     background-attachment: fixed;
   }
 
-.hola{
+.section-one{
     color: white;
     font-family: "1_Minecraft-Regular";
+    width: auto;
+}
+
+th{
+    color: white;
+
 }
 
 
+tr{
+    color: white;
+
+}
+
+th, td {
+    border: none; /* 👈 sin bordes visibles */
+    padding: 10px;
+    background-color: #222;
+    color: #fff;
+  }
