@@ -1,0 +1,23 @@
+@import url(variablesP1.css);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+.hola{
+    color: white;
+    font-family: "1_Minecraft-Regular";
+}
+
+
