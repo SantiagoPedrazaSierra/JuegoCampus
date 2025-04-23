@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: 2px solid tomato; /* Depuración visual */
+    outline: px solid tomato; /* Depuración visual */
 
 }
 
@@ -89,7 +89,7 @@ body {
   }
   
   .card {
-    background: black;
+    background: white;
     border: 2px solid white;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
@@ -117,5 +117,6 @@ body {
     color: white;
     font-family: 'Press Start 2P', monospace;
     font-size: 10px;
+    cursor: pointer;
   }
   
