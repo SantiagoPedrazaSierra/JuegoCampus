@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: 0px solid tomato; /* Depuración visual */
+    outline: 2px solid tomato; /* Depuración visual */
 
 }
 
@@ -18,25 +18,104 @@ body {
   }
 
 .section-one{
-    color: white;
+    display: flex;
+    background: white;
     font-family: "1_Minecraft-Regular";
-    width: auto;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 100%;
+    cursor: pointer;
+    margin: 20px;
+    border: 2px solid gray;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* cian brillante */
+
+    img{
+        width: 100%;
+        height: 100%;
+    }
 }
 
-th{
-    color: white;
-
-}
-
-
-tr{
-    color: white;
-
-}
-
-th, td {
-    border: none; /* 👈 sin bordes visibles */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
     padding: 10px;
-    background-color: #222;
-    color: #fff;
   }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .header h1 {
+    font-size: 14px;
+  }
+  
+  .back-button {
+    background: #000;
+    color: white;
+    font-size: 18px;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    background: #121212;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    background: #1e1e1e;
+    border: none;
+    color: gray;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    background: black;
+    color: white;
+    border-bottom: 2px solid #9c59ff;
+  }
+  
+  .card {
+    background: black;
+    border: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .card h2, .card h3 {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  
+  .card p {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+  }
+  
