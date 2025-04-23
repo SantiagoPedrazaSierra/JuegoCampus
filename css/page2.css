@@ -39,11 +39,12 @@ body {
   button {
     font-family: "1_Minecraft-Regular";
     background: black;
-    color: #FED904;
     border: none;
 
-    h1 {
+    a {
       font-size: 60px;
+      text-decoration: none;
+      color: #FED904;
     }
   }
 }
@@ -120,34 +121,51 @@ body {
 
 input{
   width: 100%;
-  padding: 15px;
-  margin-top: 15px;
+  padding: 10px;
+  margin-top: 5px;
   border: 2px solid white;
   border-radius: 10px;
   background-color: #1e1e1e;
   color: white;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 10px;
-  cursor: pointer;
   font-family: "1_Minecraft-Regular";
+  font-size: 30px; /* Tamaño para el texto seleccionado */
+  cursor: pointer;
 }
 
-select{
-  width: 100%;
-  padding: 15px;
-  margin-top: 15px;
-  border: 2px solid white;
-  border-radius: 10px;
-  background-color: #1e1e1e;
-  color: white;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 10px;
-  cursor: pointer;
-  font-family: "1_Minecraft-Regular";
-}
 
 input::placeholder {
   font-size: 25px;
   color: #999;
   font-family: "1_Minecraft-Regular"; 
+}
+
+.option{
+  font-size: 25px;
+  color: #999;
+  font-family: "1_Minecraft-Regular"; 
+}
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  color: #999;
+  font-family: "1_Minecraft-Regular";
+  font-size: 25px; 
+  cursor: pointer;
+}
+
+
+select option[disabled] {
+  color: #999; 
+  font-size: 25px !important;
+}
+
+
+select option {
+  color: white; 
+  background-color: #1e1e1e;
+  font-size:30px; 
 }
