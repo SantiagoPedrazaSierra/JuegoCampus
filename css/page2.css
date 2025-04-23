@@ -80,12 +80,16 @@ body {
     color: gray;
     font-size: 12px;
     cursor: pointer;
+    font-family:"1_Minecraft-Regular";
+
   }
   
   .tab.active {
     background: black;
     color: white;
     border-bottom: 2px solid #9c59ff;
+    font-family:"1_Minecraft-Regular";
+
   }
   
   .card {
@@ -95,16 +99,21 @@ body {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
     padding: 20px;
     margin-top: 20px;
+    
   }
   
   .card h2, .card h3 {
     margin-top: 20px;
     font-size: 12px;
+    font-family:"1_Minecraft-Regular";
+
   }
   
   .card p {
     font-size: 10px;
     line-height: 1.6;
+    font-family:"1_Minecraft-Regular";
+
   }
   
   input, select {
@@ -118,5 +127,7 @@ body {
     font-family: 'Press Start 2P', monospace;
     font-size: 10px;
     cursor: pointer;
+    font-family:"1_Minecraft-Regular";
+
   }
   
