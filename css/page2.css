@@ -335,3 +335,70 @@
   .hidden {
     display: none;
   }
+/* Estilos para la sección de clases */
+.clase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.clase-card {
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 15px rgba(254, 217, 4, 0.5);
+  color: white;
+  font-family: "1_Minecraft-Regular";
+}
+
+.clase-navigation {
+  display: flex;
+  gap: 20px;
+}
+
+.clase-navigation button {
+  background: #FED904;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "1_Minecraft-Regular";
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.clase-navigation button:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+.clase-title {
+  color: #FED904;
+  font-size: 30px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.clase-description {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.clase-hit-die {
+  font-size: 20px;
+  color: #FED904;
+  margin-bottom: 10px;
+}
+
+.clase-proficiencies {
+  margin-top: 15px;
+}
+
+.clase-proficiencies h4 {
+  color: #FED904;
+  margin-bottom: 10px;
+}

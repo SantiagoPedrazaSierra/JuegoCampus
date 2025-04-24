@@ -1,6 +1,7 @@
-import { getRaces, getRaceDetails } from './api/dndApi.js';
+import { getRaces, getClasses } from './api/dndApi.js';
+import { descripcionesClases } from './clases.js';
 
-// Traducciones al español para todas las razas
+// ==================== RAZAS ====================
 const traducciones = {
   razas: {
     "dwarf": "Enano",
@@ -13,7 +14,6 @@ const traducciones = {
     "half-orc": "Medio-Orco",
     "tiefling": "Tiefling"
   },
-  
   descripciones: {
     "dwarf": "Resistentes y fuertes, expertos en combate cuerpo a cuerpo.",
     "elf": "Ágiles y con afinidad mágica, precisos en combate a distancia.",
@@ -25,8 +25,6 @@ const traducciones = {
     "half-orc": "Fuertes y resistentes, con furia en batalla.",
     "tiefling": "Con herencia infernal, habilidades mágicas innatas."
   },
-  
-  // Estadísticas base para todas las razas
   estadisticas: {
     "dwarf": { hp: 120, atk: 80 },
     "elf": { hp: 90, atk: 110 },
@@ -40,67 +38,118 @@ const traducciones = {
   }
 };
 
-let indiceActual = 0;
 let todasLasRazas = [];
+let indiceActual = 0;
 const cartaRaza = document.getElementById('race-card');
 const btnAnterior = document.getElementById('btn-prev');
 const btnSiguiente = document.getElementById('btn-next');
 
-// Función para mostrar una raza específica
 function mostrarRaza(indice) {
   if (indice < 0 || indice >= todasLasRazas.length) return;
-  
+
   const raza = todasLasRazas[indice];
   const datos = traducciones.estadisticas[raza.index] || { hp: 100, atk: 100 };
-  
+
   cartaRaza.innerHTML = `
     <div class="title">${traducciones.razas[raza.index] || raza.name}</div>
     <div class="image-box">
-      <img  class="img_tarjet" src="storade/img/${raza.index}.jpg" alt="${raza.name}">
+      <img class="img_tarjet" src="storade/img/${raza.index}.jpg" alt="${raza.name}">
     </div>
-    <div class="description">
-      ${traducciones.descripciones[raza.index] || "Descripción no disponible"}
-    </div>
+    <div class="description">${traducciones.descripciones[raza.index] || "Descripción no disponible"}</div>
     <div class="stats">
-      <span>HP: ${datos.hp} </span>
-      <span>ATK: ${datos.atk} </span>
+      <span>HP: ${datos.hp}</span>
+      <span>ATK: ${datos.atk}</span>
     </div>
   `;
-  
+
   indiceActual = indice;
 }
 
-// Cargar todas las razas desde la API
-document.addEventListener('DOMContentLoaded', async () => {
+async function cargarRazas() {
   try {
     const respuesta = await getRaces();
     todasLasRazas = respuesta.results;
-    
-    if (todasLasRazas.length > 0) {
-      mostrarRaza(0);
-    } else {
-      cartaRaza.innerHTML = "<p>No se encontraron razas disponibles</p>";
-    }
+    mostrarRaza(0);
   } catch (error) {
     cartaRaza.innerHTML = `
       <div class="error">
         <p>Error al cargar las razas</p>
-        <p>Intenta recargar la página</p>
+        <p>${error.message}</p>
       </div>
     `;
-    console.error("Error:", error);
   }
-});
+}
 
-// Eventos para navegación
 btnAnterior.addEventListener('click', () => {
-  if (indiceActual > 0) {
-    mostrarRaza(indiceActual - 1);
-  }
+  if (indiceActual > 0) mostrarRaza(indiceActual - 1);
 });
 
 btnSiguiente.addEventListener('click', () => {
-  if (indiceActual < todasLasRazas.length - 1) {
-    mostrarRaza(indiceActual + 1);
+  if (indiceActual < todasLasRazas.length - 1) mostrarRaza(indiceActual + 1);
+});
+
+// ==================== CLASES ====================
+const classCard = document.getElementById('class-card');
+let todasLasClases = [];
+let indiceClaseActual = 0;
+
+function mostrarClase(indice) {
+  if (indice < 0 || indice >= todasLasClases.length) return;
+
+  const clase = todasLasClases[indice];
+  const descripcion = descripcionesClases[clase.index] || "Descripción no disponible";
+
+  classCard.innerHTML = `
+    <h3>${clase.name}</h3>
+    <p>${descripcion}</p>
+  `;
+
+  indiceClaseActual = indice;
+}
+
+async function cargarClases() {
+  try {
+    todasLasClases = await getClasses();
+    mostrarClase(0);
+  } catch (error) {
+    classCard.innerHTML = `<p>Error al cargar las clases</p>`;
+  }
+}
+
+document.getElementById('class-prev').addEventListener('click', () => {
+  if (indiceClaseActual > 0) mostrarClase(indiceClaseActual - 1);
+});
+
+document.getElementById('class-next').addEventListener('click', () => {
+  if (indiceClaseActual < todasLasClases.length - 1) mostrarClase(indiceClaseActual + 1);
+});
+
+// ==================== MANEJO DE PESTAÑAS ====================
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', async () => {
+    const tabId = tab.dataset.tab;
+
+    document.querySelectorAll('.section_card').forEach(section => {
+      section.classList.add('hidden');
+    });
+
+    const section = document.getElementById(`${tabId}-tab`);
+    if (section) section.classList.remove('hidden');
+
+    if (tabId === 'raza' && todasLasRazas.length === 0) {
+      await cargarRazas();
+    }
+
+    if (tabId === 'clase' && todasLasClases.length === 0) {
+      await cargarClases();
+    }
+  });
+});
+
+// ==================== CARGA INICIAL ====================
+document.addEventListener('DOMContentLoaded', async () => {
+  const razaTab = document.getElementById('raza-tab');
+  if (razaTab && !razaTab.classList.contains('hidden')) {
+    await cargarRazas();
   }
 });
