@@ -1,42 +1,41 @@
-@import url(variablesP1.css);
+  @import url(variablesP1.css);
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  background: rgb(0, 0, 0);
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex; 
-  justify-content: center;
-  align-items: center; 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
+  body {
+    background: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
 
-.container {
-  width: 90%;
-  max-width: 1000px; 
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  padding: 20px;
-}
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px;
+  }
 
-.section_header {
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-  padding: 12px;
-}
+  .section_header {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 12px;
+  }
 
-.section-one {
-  button {
+  .boton-atras {
     font-family: "1_Minecraft-Regular";
     background: black;
     border: none;
@@ -47,125 +46,292 @@ body {
       color: #FED904;
     }
   }
-}
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
-.header h1 {
-  font-size: 30px;
-  color: #FED904;
-  font-family: "PressStart2P";
-}
-
-.tabs {
-  display: flex;
-  justify-content: space-between;
-  background: #121212;
-  margin-top: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.tab {
-  flex: 1;
-  padding: 12px;
-  text-align: center;
-  background: #1e1e1e;
-  border: none;
-  color: gray;
-  font-size: 30px;
-  cursor: pointer;
-  font-family: "1_Minecraft-Regular";
-}
-
-.tab.active {
-  background: black;
-  color: white;
-  border-bottom: 2px solid #FED904;
-  font-family: "1_Minecraft-Regular";
-}
-
-.card {
-  background-color: rgba(255, 255, 255, 0.100);
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
-  padding: 35px;
-
-  h2 {
+  .title_main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 30px;
-    font-family: "1_Minecraft-Regular";
-    color: rgba(254, 217, 4, 0.943);
+    color: #FED904;
+    font-family: "PressStart2P";
   }
 
-  p {
-    color: white;
-  }
-
-  h3 {
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    background: #121212;
     margin-top: 20px;
-    font-size: 30px;
-    font-family: "1_Minecraft-Regular";
-    color: rgba(254, 217, 4, 0.943);
+    border-radius: 10px;
+    overflow: hidden;
   }
-}
 
-.card p {
-  font-size: 25px;
-  line-height: 1.6;
-  font-family: "1_Minecraft-Regular";
-}
+  .tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    background: #1e1e1e;
+    border: none;
+    color: gray;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: "1_Minecraft-Regular";
+  }
 
-input{
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 2px solid white;
-  border-radius: 10px;
-  background-color: #1e1e1e;
-  color: white;
-  font-family: "1_Minecraft-Regular";
-  font-size: 30px; /* Tamaño para el texto seleccionado */
-  cursor: pointer;
-}
+  .tab.active {
+    background: black;
+    color: white;
+    border-bottom: 2px solid #FED904;
+    font-family: "1_Minecraft-Regular";
+  }
+
+  .section_card {
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    h2 {
+      font-size: 30px;
+      font-family: "1_Minecraft-Regular";
+      color: rgba(254, 217, 4, 0.943);
+    }
+
+    p {
+      color: white;
+    }
+
+    h3 {
+      margin-top: 20px;
+      font-size: 30px;
+      font-family: "1_Minecraft-Regular";
+      color: rgba(254, 217, 4, 0.943);
+    }
+  }
+
+  .section_card p {
+    font-size: 25px;
+    line-height: 1.6;
+    font-family: "1_Minecraft-Regular";
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: "1_Minecraft-Regular";
+    font-size: 30px;
+    cursor: pointer;
+  }
 
 
-input::placeholder {
-  font-size: 25px;
-  color: #999;
-  font-family: "1_Minecraft-Regular"; 
-}
+  input::placeholder {
+    font-size: 25px;
+    color: #999;
+    font-family: "1_Minecraft-Regular";
+  }
 
-.option{
-  font-size: 25px;
-  color: #999;
-  font-family: "1_Minecraft-Regular"; 
-}
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 2px solid white;
-  border-radius: 10px;
-  background-color: #1e1e1e;
-  color: #999;
-  font-family: "1_Minecraft-Regular";
-  font-size: 25px; 
-  cursor: pointer;
-}
+  .option {
+    font-size: 25px;
+    color: #999;
+    font-family: "1_Minecraft-Regular";
+  }
 
-
-select option[disabled] {
-  color: #999; 
-  font-size: 25px !important;
-}
+  select {
+    width: 100%;
+    padding: 18px;
+    margin-top: 5px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: "1_Minecraft-Regular";
+    font-size: 25px;
+    cursor: pointer;
+  }
 
 
-select option {
-  color: white; 
-  background-color: #1e1e1e;
-  font-size:30px; 
-}
+  select option[disabled] {
+    color: #999;
+    font-size: 25px !important;
+  }
+
+
+  select option {
+    color: white;
+    background-color: #1e1e1e;
+    font-size: 30px;
+  }
+
+  .section_razas {
+    display: flex;
+    justify-content: row;
+    align-items: center;
+    margin-top: 55px;
+    padding-bottom: 60px;
+  }
+
+  .card {
+    width: 50%;
+    max-width: 1000px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(255, 217, 4, 0.724);
+    border-radius: 10px;
+    padding: 35px;
+    color: white;
+    font-family: "1_Minecraft-Regular";
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("66801260-9cf2-4df6-b0fc-147e6807c17d.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+    border-radius: 10px;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    color: #FED904;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Contenedor de la imagen */
+  .image-box {
+    width: 100%;
+    height: 400px;
+    /* Altura fija para consistencia */
+
+    position: relative;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    /* Color de fondo mientras carga */
+  }
+
+  .
+
+  /* Efecto al pasar el mouse (opcional) */
+  .image-box:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Estilo para cuando la imagen no carga */
+  .image-box img.failed {
+    opacity: 0.5;
+  }
+
+  .description {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid white;
+    font-size: 25px;
+    padding: 15px;
+    color: #999;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #FED904;
+    font-size: 25px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .boton_atras {
+    button {
+      background: black;
+      color: #FED904;
+      border: none;
+      display: flex;
+      padding: 30px;
+      font-size: 70px;
+      font-family: "1_Minecraft-Regular";
+      cursor: pointer;
+    }
+
+  }
+
+  /* ===== RESPONSIVIDAD ===== */
+  @media (max-width: 768px) {
+    .container {
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .tabs {
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      font-size: 20px;
+      padding: 8px;
+    }
+
+    .section_razas {
+      flex-direction: column;
+    }
+
+    .card {
+      width: 100%;
+    }
+  }
+
+  /* ===== ESTADOS INTERACTIVOS ===== */
+  .tab:hover {
+    background: #333 !important;
+  }
+
+  /* ===== IMÁGENES RESPONSIVAS ===== */
+  .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Estilos para los botones de navegación */
+  .boton_atras button {
+    background: black;
+    color: #FED904;
+    border: none;
+    padding: 30px;
+    font-size: 70px;
+    font-family: "1_Minecraft-Regular";
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .boton_atras button:hover {
+    transform: scale(1.1);
+    color: #fff;
+  }
+
+  /* Oculta las pestañas no activas */
+  .hidden {
+    display: none;
+  }

@@ -4,49 +4,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documento</title>
+  <title>Forjador de Aventureros D&D</title>
   <link rel="stylesheet" href="css/page2.css">
-  <script type="module" defer src="main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </head>
 
 <body>
-  <section  class="container">
+  <main class="container">
+    <!-- Encabezado -->
     <section class="section_header">
-      <section class="section-one">
-        <button>
-          <a href="#"><</a>
-        </button>
-      </section>
-      <article class="header">
-        <h1>FORJADOR DE AVENTUREROS</h1>
-      </article>
+      <button class="boton-atras">
+        <a href="#"><</a>
+      </button>
+      <h1 class="title_main">FORJADOR DE AVENTUREROS</h1>
     </section>
 
-    <article class="tabs">
-      <button class="tab active">RAZA</button>
-      <button class="tab">CLASE</button>
-      <button class="tab">EQUIPO</button>
-      <button class="tab">ESTADÍSTICAS</button>
-      <button class="tab">REVISAR</button>
-    </article>
+    <!-- Pestañas -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="raza">RAZA</button>
+      <button class="tab" data-tab="clase">CLASE</button>
+      <button class="tab" data-tab="equipo">EQUIPO</button>
+      <button class="tab" data-tab="stats">ESTADÍSTICAS</button>
+      <button class="tab" data-tab="review">REVISAR</button>
+    </nav>
 
-    <section class="card">
+    <!-- Formulario -->
+    <section class="section_card" id="raza-tab">
       <h2>MODIFICA TU AVENTURERO</h2>
-      <p>Selecciona nombre y genero</p>
-
-      <h3>NOMBRE DEL PERSONAJE</h3>
-      <input type="text" placeholder="Escribe tu nombre">
-
-      <h3>GENERO</h3>
-      <select>
+      <p>Selecciona nombre y género</p>
+      <input type="text" id="nombre-personaje" placeholder="Escribe tu nombre">
+      <select id="genero-personaje">
         <option selected disabled>Escoge tu genero</option>
         <option>Masculino</option>
         <option>Femenino</option>
         <option>Otro</option>
       </select>
     </section>
-  </section>
 
+    <section class="section_razas">
+      <!-- Botón Atrás -->
+      <article class="boton_atras">
+        <button id="btn-prev"><</button>
+      </article>
+    
+      <!-- Contenedor de Cartas (se llenará con JS) -->
+      <article class="card" id="race-card">
+        <!-- Contenido dinámico -->
+      </article>
+    
+      <!-- Botón Siguiente -->
+      <article class="boton_atras">
+        <button id="btn-next">></button>
+      </article>
+    </section>
+  </main>
 </body>
 
 </html>
