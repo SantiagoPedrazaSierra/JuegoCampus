@@ -2,16 +2,22 @@
 <html lang="es">
 
 <head>
+  <!-- ==================== METADATOS Y RECURSOS ==================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forjador de Aventureros D&D</title>
+
+  <!-- Enlace a la hoja de estilos -->
   <link rel="stylesheet" href="css/page2.css">
+
+  <!-- Script principal en módulo -->
   <script type="module" src="js/main.js"></script>
 </head>
 
 <body>
   <main class="container">
-    <!-- Encabezado -->
+
+    <!-- ==================== ENCABEZADO ==================== -->
     <section class="section_header">
       <button class="boton-atras">
         <a href="#">
@@ -20,20 +26,20 @@
       <h1 class="title_main">FORJADOR DE AVENTUREROS</h1>
     </section>
 
-    <!-- Pestañas -->
+    <!-- ==================== PESTAÑAS DE NAVEGACIÓN ==================== -->
     <nav class="tabs">
       <button id="raza-tab" class="tab" data-tab="raza">RAZA</button>
       <button id="clase-tab" class="tab" data-tab="clase">CLASE</button>
-      <button  id="equipo" class="tab" data-tab="equipo">EQUIPO</button>
-      <button  id="stats" class="tab" data-tab="stats">ESTADÍSTICAS</button>
-      <button  id="review" class="tab" data-tab="review">REVISAR</button>
+      <button id="equipo" class="tab" data-tab="equipo">EQUIPO</button>
+      <button id="stats" class="tab" data-tab="stats">ESTADISTICAS</button>
+      <button id="review" class="tab" data-tab="review">REVISAR</button>
     </nav>
 
-    <!-- Formulario -->
+    <!-- ==================== FORMULARIO DE INICIO ==================== -->
     <section id="formulario-inicial" class="hidden">
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre...">
-      
+
       <label for="genero">Genero:</label>
       <select id="genero" name="genero">
         <option value="" disabled selected>Selecciona tu genero</option>
@@ -42,17 +48,17 @@
         <option value="otro">Otro</option>
       </select>
     </section>
-    
-    
 
+    <!-- ==================== SECCIÓN DE RAZAS ==================== -->
     <section class="section_razas hidden" id="raza-container">
+
       <!-- Botón Atrás -->
       <article class="boton_atras">
         <button id="btn-prev">
           < </button>
       </article>
 
-      <!-- Contenedor de Cartas (se llenará con JS) -->
+      <!-- Contenedor de Cartas de Raza (dinámico) -->
       <article class="card" id="race-card">
         <!-- Contenido dinámico -->
       </article>
@@ -63,13 +69,21 @@
       </article>
     </section>
 
-<!-- Tab de Clases -->
-<section class="section_card hidden" id="clase-container">
-  <div id="class-card-container"></div>
+    <!-- ==================== SECCIÓN DE CLASES ==================== -->
+    <section class="section_card hidden" id="clase-container">
+      <div id="class-card-container">
+        <!-- Las clases se llenarán aquí dinámicamente -->
+      </div>
+    </section>
 
-    <!-- Las clases se llenarán aquí dinámicamente -->
-  </div>
-</section>
+    <!-- ==================== SECCIÓN DE ESTADÍSTICAS ==================== -->
+    <div id="estadisticas-container" class="hidden">
+      <div class="stats-container">
+        <h2 class="stats-title">ESTADISTICAS DEL PERSONAJE</h2>
+        <div id="contenido-estadisticas" class="stats-grid"></div>
+        <div class="stats-summary" id="resumen-estadisticas"></div>
+      </div>
+    </div>
 
   </main>
 </body>

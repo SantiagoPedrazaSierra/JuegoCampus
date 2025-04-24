@@ -96,6 +96,7 @@ btnSiguiente.addEventListener('click', () => {
 // ==================== CLASES ====================
 const classCardContainer = document.getElementById('class-card-container');
 let todasLasClases = [];
+let claseSeleccionada = null;
 
 function mostrarTodasLasClases() {
   classCardContainer.innerHTML = '';
@@ -105,14 +106,22 @@ function mostrarTodasLasClases() {
 
     const card = document.createElement('div');
     card.classList.add('class-card');
+    card.setAttribute('data-clase', clase.index);
+
     card.innerHTML = `
       <h3>${clase.name.toUpperCase()}</h3>
       <p>${descripcion}</p>
     `;
 
     card.addEventListener('click', () => {
-      document.querySelectorAll('.class-card').forEach(c => c.style.border = '2px solid #FED904');
+      // Remover bordes de todas las tarjetas
+      document.querySelectorAll('.class-card').forEach(c => {
+        c.style.border = 'none'; // Elimina todos los bordes
+      });
+      
+      // Añadir borde solo a la seleccionada
       card.style.border = '2px solid white';
+      claseSeleccionada = clase.index;
     });
 
     classCardContainer.appendChild(card);
@@ -125,7 +134,63 @@ async function cargarClases() {
     mostrarTodasLasClases();
   } catch (error) {
     classCardContainer.innerHTML = `<p>Error al cargar las clases</p>`;
+    console.error("Error al cargar las clases:", error);
   }
+}
+
+// ==================== ESTADÍSTICAS ====================
+function crearEstadisticasPersonaje(clase, raza) {
+  // Obtener estadísticas y nombres
+  const datosRaza = traducciones.estadisticas[raza] || { hp: 100, atk: 100 };
+  const nombreRaza = traducciones.razas[raza] || raza;
+  const nombreClase = clase.charAt(0).toUpperCase() + clase.slice(1).toLowerCase();
+  
+  // Definir modificadores por clase
+  const modificadoresClase = {
+    "barbarian": { hp: 30, atk: 20, def: 15 },
+    "bard": { hp: 15, atk: 10, def: 5 },
+    // ... (resto de las clases)
+  };
+  
+  const modClase = modificadoresClase[clase] || { hp: 0, atk: 0, def: 0 };
+  
+  // Calcular estadísticas finales
+  const hpFinal = datosRaza.hp + modClase.hp;
+  const atkFinal = datosRaza.atk + modClase.atk;
+  
+  // Generar HTML
+  return `
+    <div class="stat-item">
+      <div class="stat-name">FUERZA</div>
+      <div class="stat-value">${Math.floor(atkFinal * 0.8)}</div>
+      <div class="stat-modifier">+${Math.floor(atkFinal * 0.8 / 10)}</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-name">DESTREZA</div>
+      <div class="stat-value">${Math.floor(atkFinal * 0.9)}</div>
+      <div class="stat-modifier">+${Math.floor(atkFinal * 0.9 / 10)}</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-name">CONSTITUCIÓN</div>
+      <div class="stat-value">${Math.floor(hpFinal * 0.7)}</div>
+      <div class="stat-modifier">+${Math.floor(hpFinal * 0.7 / 10)}</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-name">INTELIGENCIA</div>
+      <div class="stat-value">${clase.includes('wizard') ? 18 : Math.floor(atkFinal * 0.6)}</div>
+      <div class="stat-modifier">+${clase.includes('wizard') ? 4 : Math.floor(atkFinal * 0.6 / 10)}</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-name">SABIDURÍA</div>
+      <div class="stat-value">${clase.includes('cleric') ? 16 : Math.floor(hpFinal * 0.5)}</div>
+      <div class="stat-modifier">+${clase.includes('cleric') ? 3 : Math.floor(hpFinal * 0.5 / 10)}</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-name">CARISMA</div>
+      <div class="stat-value">${clase.includes('bard') ? 18 : Math.floor(atkFinal * 0.4)}</div>
+      <div class="stat-modifier">+${clase.includes('bard') ? 4 : Math.floor(atkFinal * 0.4 / 10)}</div>
+    </div>
+  `;
 }
 
 // ==================== PESTAÑAS ====================
@@ -136,9 +201,11 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
+    // Ocultar todos los contenedores
     document.getElementById('raza-container').classList.add('hidden');
     document.getElementById('clase-container').classList.add('hidden');
     document.getElementById('formulario-inicial').classList.add('hidden');
+    document.getElementById('estadisticas-container').classList.add('hidden');
 
     if (tabId === 'raza') {
       document.getElementById('raza-container').classList.remove('hidden');
@@ -147,13 +214,40 @@ document.querySelectorAll('.tab').forEach(tab => {
     } else if (tabId === 'clase') {
       document.getElementById('clase-container').classList.remove('hidden');
       if (todasLasClases.length === 0) await cargarClases();
+    } else if (tabId === 'stats') {
+      document.getElementById('estadisticas-container').classList.remove('hidden');
+      
+      const razaSeleccionada = todasLasRazas[indiceActual]?.index;
+      const contenedorEstadisticas = document.getElementById('contenido-estadisticas');
+      const resumenEstadisticas = document.getElementById('resumen-estadisticas');
+
+      if (razaSeleccionada && claseSeleccionada) {
+        const statsHTML = crearEstadisticasPersonaje(claseSeleccionada, razaSeleccionada);
+        contenedorEstadisticas.innerHTML = statsHTML;
+        
+        // Agregar resumen
+        resumenEstadisticas.innerHTML = `
+        <p>Personaje:</p>
+        <p>Raza: <strong>${traducciones.razas[razaSeleccionada]}</strong></p>
+        <p>Clase: <strong>${claseSeleccionada.toUpperCase()}</strong></p>
+        <p>HP Base: <span>${traducciones.estadisticas[razaSeleccionada].hp}</span></p>
+        <p>ATK Base: <span>${traducciones.estadisticas[razaSeleccionada].atk}</span></p>
+      `;
+      
+      } else {
+        contenedorEstadisticas.innerHTML = `
+          <div class="stat-item" style="grid-column: 1 / -1;">
+            <p>Por favor, selecciona una raza y una clase primero.</p>
+          </div>
+        `;
+        resumenEstadisticas.innerHTML = '';
+      }
     }
   });
 });
 
 // ==================== CARGA INICIAL ====================
 document.addEventListener('DOMContentLoaded', async () => {
-  // Activar RAZA por defecto
   document.getElementById('raza-tab').classList.add('active');
   document.getElementById('raza-container').classList.remove('hidden');
   document.getElementById('formulario-inicial').classList.remove('hidden');

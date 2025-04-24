@@ -1,14 +1,31 @@
-:root{
-    --color-1: #E5E5E5;
+:root {
+    /* Colores principales */
+    --color-amarillo: #FED904;
+    --color-negro: #000000;
+    --color-gris-oscuro: #1e1e1e;
+    --color-gris-fondo: #121212;
+    --color-gris-claro: #999999;
+    --color-blanco: #ffffff;
+
+    /* Colores para sombras y efectos */
+    --sombra-amarilla: rgba(254, 217, 4, 0.2);
+    --sombra-amarilla-fuerte: rgba(255, 217, 4, 0.724);
+    --sombra-hover: rgba(254, 217, 4, 0.5);
+    --sombra-leve-hover: rgba(254, 217, 4, 0.3);
+    --fondo-hover-clase: rgba(254, 217, 4, 0.05);
+    --fondo-seleccion-clase: rgba(254, 217, 4, 0.1);
+
+    /* Otros */
+    --color-modificador: #00FFC3;
 }
 
+
 @font-face {
-    font-family:"PressStart2P";
+    font-family: "PressStart2P";
     src: url(../storade/font/PressStart2P-Regular.ttf);
 }
+
 @font-face {
-    font-family:"1_Minecraft-Regular";
+    font-family: "1_Minecraft-Regular";
     src: url(../storade/font/1_Minecraft-Regular.otf);
 }
-
-
