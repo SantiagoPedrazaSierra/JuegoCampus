@@ -39,23 +39,27 @@ const traducciones = {
 };
 
 let todasLasRazas = [];
-let indiceActual = 0;
 const cartaRaza = document.getElementById('race-card');
 const btnAnterior = document.getElementById('btn-prev');
 const btnSiguiente = document.getElementById('btn-next');
+
+let indiceActual = 0;
 
 function mostrarRaza(indice) {
   if (indice < 0 || indice >= todasLasRazas.length) return;
 
   const raza = todasLasRazas[indice];
-  const datos = traducciones.estadisticas[raza.index] || { hp: 100, atk: 100 };
+  const clave = raza.index;
+  const datos = traducciones.estadisticas[clave] || { hp: 100, atk: 100 };
 
   cartaRaza.innerHTML = `
-    <div class="title">${traducciones.razas[raza.index] || raza.name}</div>
+    <div class="title">${traducciones.razas[clave] || raza.name}</div>
     <div class="image-box">
-      <img class="img_tarjet" src="storade/img/${raza.index}.jpg" alt="${raza.name}">
+      <img class="img_tarjet" src="storade/img/${clave}.jpg" alt="${raza.name}">
     </div>
-    <div class="description">${traducciones.descripciones[raza.index] || "Descripción no disponible"}</div>
+    <div class="description">
+      ${traducciones.descripciones[clave] || "Descripción no disponible"}
+    </div>
     <div class="stats">
       <span>HP: ${datos.hp}</span>
       <span>ATK: ${datos.atk}</span>
@@ -69,14 +73,15 @@ async function cargarRazas() {
   try {
     const respuesta = await getRaces();
     todasLasRazas = respuesta.results;
-    mostrarRaza(0);
+
+    if (todasLasRazas.length > 0) {
+      mostrarRaza(0);
+    } else {
+      cartaRaza.innerHTML = "<p>No se encontraron razas disponibles</p>";
+    }
   } catch (error) {
-    cartaRaza.innerHTML = `
-      <div class="error">
-        <p>Error al cargar las razas</p>
-        <p>${error.message}</p>
-      </div>
-    `;
+    cartaRaza.innerHTML = `<div class="error"><p>Error al cargar las razas</p></div>`;
+    console.error("Error al cargar las razas:", error);
   }
 }
 
@@ -89,67 +94,68 @@ btnSiguiente.addEventListener('click', () => {
 });
 
 // ==================== CLASES ====================
-const classCard = document.getElementById('class-card');
+const classCardContainer = document.getElementById('class-card-container');
 let todasLasClases = [];
-let indiceClaseActual = 0;
 
-function mostrarClase(indice) {
-  if (indice < 0 || indice >= todasLasClases.length) return;
+function mostrarTodasLasClases() {
+  classCardContainer.innerHTML = '';
 
-  const clase = todasLasClases[indice];
-  const descripcion = descripcionesClases[clase.index] || "Descripción no disponible";
+  todasLasClases.forEach(clase => {
+    const descripcion = descripcionesClases[clase.index] || "Descripción no disponible.";
 
-  classCard.innerHTML = `
-    <h3>${clase.name}</h3>
-    <p>${descripcion}</p>
-  `;
+    const card = document.createElement('div');
+    card.classList.add('class-card');
+    card.innerHTML = `
+      <h3>${clase.name.toUpperCase()}</h3>
+      <p>${descripcion}</p>
+    `;
 
-  indiceClaseActual = indice;
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.class-card').forEach(c => c.style.border = '2px solid #FED904');
+      card.style.border = '2px solid white';
+    });
+
+    classCardContainer.appendChild(card);
+  });
 }
 
 async function cargarClases() {
   try {
     todasLasClases = await getClasses();
-    mostrarClase(0);
+    mostrarTodasLasClases();
   } catch (error) {
-    classCard.innerHTML = `<p>Error al cargar las clases</p>`;
+    classCardContainer.innerHTML = `<p>Error al cargar las clases</p>`;
   }
 }
 
-document.getElementById('class-prev').addEventListener('click', () => {
-  if (indiceClaseActual > 0) mostrarClase(indiceClaseActual - 1);
-});
-
-document.getElementById('class-next').addEventListener('click', () => {
-  if (indiceClaseActual < todasLasClases.length - 1) mostrarClase(indiceClaseActual + 1);
-});
-
-// ==================== MANEJO DE PESTAÑAS ====================
+// ==================== PESTAÑAS ====================
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', async () => {
     const tabId = tab.dataset.tab;
 
-    document.querySelectorAll('.section_card').forEach(section => {
-      section.classList.add('hidden');
-    });
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
 
-    const section = document.getElementById(`${tabId}-tab`);
-    if (section) section.classList.remove('hidden');
+    document.getElementById('raza-container').classList.add('hidden');
+    document.getElementById('clase-container').classList.add('hidden');
+    document.getElementById('formulario-inicial').classList.add('hidden');
 
-    if (tabId === 'raza' && todasLasRazas.length === 0) {
+    if (tabId === 'raza') {
+      document.getElementById('raza-container').classList.remove('hidden');
+      document.getElementById('formulario-inicial').classList.remove('hidden');
       await cargarRazas();
-    }
-
-    if (tabId === 'clase' && todasLasClases.length === 0) {
-      await cargarClases();
+    } else if (tabId === 'clase') {
+      document.getElementById('clase-container').classList.remove('hidden');
+      if (todasLasClases.length === 0) await cargarClases();
     }
   });
 });
 
 // ==================== CARGA INICIAL ====================
 document.addEventListener('DOMContentLoaded', async () => {
-  const razaTab = document.getElementById('raza-tab');
-  if (razaTab && !razaTab.classList.contains('hidden')) {
-    await cargarRazas();
-  }
+  // Activar RAZA por defecto
+  document.getElementById('raza-tab').classList.add('active');
+  document.getElementById('raza-container').classList.remove('hidden');
+  document.getElementById('formulario-inicial').classList.remove('hidden');
+  await cargarRazas();
 });

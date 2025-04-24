@@ -22,27 +22,30 @@
 
     <!-- Pestañas -->
     <nav class="tabs">
-      <button class="tab active" data-tab="raza">RAZA</button>
-      <button class="tab" data-tab="clase">CLASE</button>
-      <button class="tab" data-tab="equipo">EQUIPO</button>
-      <button class="tab" data-tab="stats">ESTADÍSTICAS</button>
-      <button class="tab" data-tab="review">REVISAR</button>
+      <button id="raza-tab" class="tab" data-tab="raza">RAZA</button>
+      <button id="clase-tab" class="tab" data-tab="clase">CLASE</button>
+      <button  id="equipo" class="tab" data-tab="equipo">EQUIPO</button>
+      <button  id="stats" class="tab" data-tab="stats">ESTADÍSTICAS</button>
+      <button  id="review" class="tab" data-tab="review">REVISAR</button>
     </nav>
 
     <!-- Formulario -->
-    <section class="section_card" id="raza-tab">
-      <h2>MODIFICA TU AVENTURERO</h2>
-      <p>Selecciona nombre y género</p>
-      <input type="text" id="nombre-personaje" placeholder="Escribe tu nombre">
-      <select id="genero-personaje">
-        <option selected disabled>Escoge tu genero</option>
-        <option>Masculino</option>
-        <option>Femenino</option>
-        <option>Otro</option>
+    <section id="formulario-inicial" class="hidden">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre...">
+      
+      <label for="genero">Genero:</label>
+      <select id="genero" name="genero">
+        <option value="" disabled selected>Selecciona tu genero</option>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="otro">Otro</option>
       </select>
     </section>
+    
+    
 
-    <section class="section_razas">
+    <section class="section_razas hidden" id="raza-container">
       <!-- Botón Atrás -->
       <article class="boton_atras">
         <button id="btn-prev">
@@ -60,20 +63,14 @@
       </article>
     </section>
 
-    <section class="section_card hidden" id="clase-tab">
-      <h2>SELECCIONA TU CLASE</h2>
-      <div class="clase-container">
-        <!-- Contenedor para las tarjetas de clase -->
-        <div class="clase-card" id="class-card">
-          <!-- Contenido dinámico -->
-        </div>
-        <div class="clase-navigation">
-          <button id="class-prev">
-            < </button>
-              <button id="class-next">></button>
-        </div>
-      </div>
-    </section>
+<!-- Tab de Clases -->
+<section class="section_card hidden" id="clase-container">
+  <div id="class-card-container"></div>
+
+    <!-- Las clases se llenarán aquí dinámicamente -->
+  </div>
+</section>
+
   </main>
 </body>
 
