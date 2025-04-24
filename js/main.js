@@ -114,12 +114,9 @@ function mostrarTodasLasClases() {
     `;
 
     card.addEventListener('click', () => {
-      // Remover bordes de todas las tarjetas
       document.querySelectorAll('.class-card').forEach(c => {
-        c.style.border = 'none'; // Elimina todos los bordes
+        c.style.border = 'none';
       });
-      
-      // Añadir borde solo a la seleccionada
       card.style.border = '2px solid white';
       claseSeleccionada = clase.index;
     });
@@ -140,56 +137,33 @@ async function cargarClases() {
 
 // ==================== ESTADÍSTICAS ====================
 function crearEstadisticasPersonaje(clase, raza) {
-  // Obtener estadísticas y nombres
   const datosRaza = traducciones.estadisticas[raza] || { hp: 100, atk: 100 };
-  const nombreRaza = traducciones.razas[raza] || raza;
-  const nombreClase = clase.charAt(0).toUpperCase() + clase.slice(1).toLowerCase();
-  
-  // Definir modificadores por clase
   const modificadoresClase = {
     "barbarian": { hp: 30, atk: 20, def: 15 },
     "bard": { hp: 15, atk: 10, def: 5 },
-    // ... (resto de las clases)
+    "cleric": { hp: 20, atk: 15, def: 10 },
+    "druid": { hp: 18, atk: 12, def: 8 },
+    "fighter": { hp: 25, atk: 18, def: 12 },
+    "monk": { hp: 15, atk: 20, def: 10 },
+    "paladin": { hp: 22, atk: 16, def: 14 },
+    "ranger": { hp: 20, atk: 18, def: 10 },
+    "rogue": { hp: 18, atk: 22, def: 8 },
+    "sorcerer": { hp: 12, atk: 25, def: 6 },
+    "warlock": { hp: 14, atk: 20, def: 8 },
+    "wizard": { hp: 10, atk: 28, def: 5 }
   };
   
   const modClase = modificadoresClase[clase] || { hp: 0, atk: 0, def: 0 };
-  
-  // Calcular estadísticas finales
   const hpFinal = datosRaza.hp + modClase.hp;
   const atkFinal = datosRaza.atk + modClase.atk;
-  
-  // Generar HTML
+
   return `
-    <div class="stat-item">
-      <div class="stat-name">FUERZA</div>
-      <div class="stat-value">${Math.floor(atkFinal * 0.8)}</div>
-      <div class="stat-modifier">+${Math.floor(atkFinal * 0.8 / 10)}</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-name">DESTREZA</div>
-      <div class="stat-value">${Math.floor(atkFinal * 0.9)}</div>
-      <div class="stat-modifier">+${Math.floor(atkFinal * 0.9 / 10)}</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-name">CONSTITUCIÓN</div>
-      <div class="stat-value">${Math.floor(hpFinal * 0.7)}</div>
-      <div class="stat-modifier">+${Math.floor(hpFinal * 0.7 / 10)}</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-name">INTELIGENCIA</div>
-      <div class="stat-value">${clase.includes('wizard') ? 18 : Math.floor(atkFinal * 0.6)}</div>
-      <div class="stat-modifier">+${clase.includes('wizard') ? 4 : Math.floor(atkFinal * 0.6 / 10)}</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-name">SABIDURÍA</div>
-      <div class="stat-value">${clase.includes('cleric') ? 16 : Math.floor(hpFinal * 0.5)}</div>
-      <div class="stat-modifier">+${clase.includes('cleric') ? 3 : Math.floor(hpFinal * 0.5 / 10)}</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-name">CARISMA</div>
-      <div class="stat-value">${clase.includes('bard') ? 18 : Math.floor(atkFinal * 0.4)}</div>
-      <div class="stat-modifier">+${clase.includes('bard') ? 4 : Math.floor(atkFinal * 0.4 / 10)}</div>
-    </div>
+    <div class="stat-item"><div class="stat-name">FUERZA</div><div class="stat-value">${Math.floor(atkFinal * 0.8)}</div><div class="stat-modifier">+${Math.floor(atkFinal * 0.8 / 10)}</div></div>
+    <div class="stat-item"><div class="stat-name">DESTREZA</div><div class="stat-value">${Math.floor(atkFinal * 0.9)}</div><div class="stat-modifier">+${Math.floor(atkFinal * 0.9 / 10)}</div></div>
+    <div class="stat-item"><div class="stat-name">CONSTITUCIÓN</div><div class="stat-value">${Math.floor(hpFinal * 0.7)}</div><div class="stat-modifier">+${Math.floor(hpFinal * 0.7 / 10)}</div></div>
+    <div class="stat-item"><div class="stat-name">INTELIGENCIA</div><div class="stat-value">${clase.includes('wizard') ? 18 : Math.floor(atkFinal * 0.6)}</div><div class="stat-modifier">+${clase.includes('wizard') ? 4 : Math.floor(atkFinal * 0.6 / 10)}</div></div>
+    <div class="stat-item"><div class="stat-name">SABIDURÍA</div><div class="stat-value">${clase.includes('cleric') ? 16 : Math.floor(hpFinal * 0.5)}</div><div class="stat-modifier">+${clase.includes('cleric') ? 3 : Math.floor(hpFinal * 0.5 / 10)}</div></div>
+    <div class="stat-item"><div class="stat-name">CARISMA</div><div class="stat-value">${clase.includes('bard') ? 18 : Math.floor(atkFinal * 0.4)}</div><div class="stat-modifier">+${clase.includes('bard') ? 4 : Math.floor(atkFinal * 0.4 / 10)}</div></div>
   `;
 }
 
@@ -197,15 +171,15 @@ function crearEstadisticasPersonaje(clase, raza) {
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', async () => {
     const tabId = tab.dataset.tab;
-
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
-    // Ocultar todos los contenedores
+    // Ocultar todas las secciones
     document.getElementById('raza-container').classList.add('hidden');
     document.getElementById('clase-container').classList.add('hidden');
     document.getElementById('formulario-inicial').classList.add('hidden');
     document.getElementById('estadisticas-container').classList.add('hidden');
+    document.getElementById('equipo-container').classList.add('hidden');
 
     if (tabId === 'raza') {
       document.getElementById('raza-container').classList.remove('hidden');
@@ -216,37 +190,40 @@ document.querySelectorAll('.tab').forEach(tab => {
       if (todasLasClases.length === 0) await cargarClases();
     } else if (tabId === 'stats') {
       document.getElementById('estadisticas-container').classList.remove('hidden');
-      
       const razaSeleccionada = todasLasRazas[indiceActual]?.index;
       const contenedorEstadisticas = document.getElementById('contenido-estadisticas');
       const resumenEstadisticas = document.getElementById('resumen-estadisticas');
 
       if (razaSeleccionada && claseSeleccionada) {
-        const statsHTML = crearEstadisticasPersonaje(claseSeleccionada, razaSeleccionada);
-        contenedorEstadisticas.innerHTML = statsHTML;
-        
-        // Agregar resumen
+        contenedorEstadisticas.innerHTML = crearEstadisticasPersonaje(claseSeleccionada, razaSeleccionada);
         resumenEstadisticas.innerHTML = `
-        <p>Personaje:</p>
-        <p>Raza: <strong>${traducciones.razas[razaSeleccionada]}</strong></p>
-        <p>Clase: <strong>${claseSeleccionada.toUpperCase()}</strong></p>
-        <p>HP Base: <span>${traducciones.estadisticas[razaSeleccionada].hp}</span></p>
-        <p>ATK Base: <span>${traducciones.estadisticas[razaSeleccionada].atk}</span></p>
-      `;
-      
-      } else {
-        contenedorEstadisticas.innerHTML = `
-          <div class="stat-item" style="grid-column: 1 / -1;">
-            <p>Por favor, selecciona una raza y una clase primero.</p>
-          </div>
+          <p>Personaje:</p>
+          <p>Raza: <strong>${traducciones.razas[razaSeleccionada]}</strong></p>
+          <p>Clase: <strong>${claseSeleccionada.toUpperCase()}</strong></p>
+          <p>HP Base: <span>${traducciones.estadisticas[razaSeleccionada].hp}</span></p>
+          <p>ATK Base: <span>${traducciones.estadisticas[razaSeleccionada].atk}</span></p>
         `;
+      } else {
+        contenedorEstadisticas.innerHTML = `<div class="stat-item" style="grid-column: 1 / -1;"><p>Por favor, selecciona una raza y una clase primero.</p></div>`;
         resumenEstadisticas.innerHTML = '';
+      }
+    } else if (tabId === 'equipo') {
+      document.getElementById('equipo-container').classList.remove('hidden');
+      const container = document.getElementById('equipment-container');
+      if (!container.dataset.loaded) {
+        try {
+          const { initEquipment } = await import('./equipamiento.js');
+          initEquipment();
+          container.dataset.loaded = "true";
+        } catch (error) {
+          container.innerHTML = '<p class="error">Error al cargar el equipamiento</p>';
+          console.error("Error al cargar equipamiento:", error);
+        }
       }
     }
   });
 });
 
-// ==================== CARGA INICIAL ====================
 document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('raza-tab').classList.add('active');
   document.getElementById('raza-container').classList.remove('hidden');

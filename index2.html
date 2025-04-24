@@ -3,14 +3,15 @@
 
 <head>
   <!-- ==================== METADATOS Y RECURSOS ==================== -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forjador de Aventureros D&D</title>
 
-  <!-- Enlace a la hoja de estilos -->
+  <!-- Estilos -->
   <link rel="stylesheet" href="css/page2.css">
+  <link rel="stylesheet" href="css/style.css">
 
-  <!-- Script principal en módulo -->
+  <!-- Script principal -->
   <script type="module" src="js/main.js"></script>
 </head>
 
@@ -19,10 +20,7 @@
 
     <!-- ==================== ENCABEZADO ==================== -->
     <section class="section_header">
-      <button class="boton-atras">
-        <a href="#">
-          < </a>
-      </button>
+      <button class="boton-atras"><</button>
       <h1 class="title_main">FORJADOR DE AVENTUREROS</h1>
     </section>
 
@@ -30,9 +28,9 @@
     <nav class="tabs">
       <button id="raza-tab" class="tab" data-tab="raza">RAZA</button>
       <button id="clase-tab" class="tab" data-tab="clase">CLASE</button>
-      <button id="equipo" class="tab" data-tab="equipo">EQUIPO</button>
-      <button id="stats" class="tab" data-tab="stats">ESTADISTICAS</button>
-      <button id="review" class="tab" data-tab="review">REVISAR</button>
+      <button id="equipo-tab" class="tab" data-tab="equipo">EQUIPO</button>
+      <button id="stats-tab" class="tab" data-tab="stats">ESTADISTICAS</button>
+      <button id="review-tab" class="tab" data-tab="review">REVISAR</button>
     </nav>
 
     <!-- ==================== FORMULARIO DE INICIO ==================== -->
@@ -51,19 +49,10 @@
 
     <!-- ==================== SECCIÓN DE RAZAS ==================== -->
     <section class="section_razas hidden" id="raza-container">
-
-      <!-- Botón Atrás -->
       <article class="boton_atras">
-        <button id="btn-prev">
-          < </button>
+        <button id="btn-prev"><</button>
       </article>
-
-      <!-- Contenedor de Cartas de Raza (dinámico) -->
-      <article class="card" id="race-card">
-        <!-- Contenido dinámico -->
-      </article>
-
-      <!-- Botón Siguiente -->
+      <article class="card" id="race-card"></article>
       <article class="boton_atras">
         <button id="btn-next">></button>
       </article>
@@ -71,21 +60,26 @@
 
     <!-- ==================== SECCIÓN DE CLASES ==================== -->
     <section class="section_card hidden" id="clase-container">
-      <div id="class-card-container">
-        <!-- Las clases se llenarán aquí dinámicamente -->
+      <div id="class-card-container"></div>
+    </section>
+
+    <!-- ==================== SECCIÓN DE EQUIPO (FUSIONADA) ==================== -->
+    <section class="section_card hidden" id="equipo-container">
+      <h1>Selector de Equipamiento D&D 5e</h1>
+      <div id="equipment-container" class="card">
+        <p>Cargando opciones de equipamiento...</p>
       </div>
     </section>
 
     <!-- ==================== SECCIÓN DE ESTADÍSTICAS ==================== -->
-    <div id="estadisticas-container" class="hidden">
+    <section id="estadisticas-container" class="hidden">
       <div class="stats-container">
         <h2 class="stats-title">ESTADISTICAS DEL PERSONAJE</h2>
         <div id="contenido-estadisticas" class="stats-grid"></div>
         <div class="stats-summary" id="resumen-estadisticas"></div>
       </div>
-    </div>
+    </section>
 
   </main>
 </body>
-
 </html>
