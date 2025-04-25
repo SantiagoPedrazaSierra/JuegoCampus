@@ -445,9 +445,19 @@ select option[disabled] {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
 
-  h1{
-    color: white;
-  }
-  
+.equipment-card h1 {
+  color: white;
+}
+
+.h1-3{
+  color: var(--color-amarillo);
+  font-family: "1_Minecraft-Regular";
+ margin: 20px;
+}
+
+.loading {
+  color: var(--color-amarillo);
+  font-family: "1_Minecraft-Regular";
 }
