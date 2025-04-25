@@ -386,6 +386,113 @@ select option[disabled] {
   font-family: "1_Minecraft-Regular";
 }
 
+/* ==================== REVISAR PERSONAJE ==================== */
+.character-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--color-blanco);
+  color: var(--color-blanco);
+  margin: 20px auto;
+  max-width: 1000px;
+  font-family: "1_Minecraft-Regular";
+  padding: 20px;
+}
+
+.card-header {
+  background-color: var(--color-negro);
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 35px;
+  color: var(--color-amarillo);
+  text-transform: uppercase;
+  font-family: "PressStart2P";
+  margin: 0;
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.character-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid var(--color-amarillo);
+}
+
+.section {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-blanco);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+
+.section-title {
+  font-size: 25px;
+  color: var(--color-amarillo);
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: "1_Minecraft-Regular";
+  border-bottom: 1px solid var(--color-blanco);
+  padding-bottom: 5px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.stat-item {
+  background-color: var(--color-gris-oscuro);
+  border: 1px solid var(--color-blanco);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  color: var(--color-blanco);
+  font-size: 20px;
+  font-family: "1_Minecraft-Regular";
+}
+
+.equipment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.equipment-item {
+  background-color: var(--color-gris-oscuro);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: var(--color-blanco);
+  font-family: "1_Minecraft-Regular";
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    grid-template-columns: 1fr;
+  }
+}
 /* ==================== MEDIA QUERIES (RESPONSIVE) ==================== */
 @media (max-width: 768px) {
   .container {

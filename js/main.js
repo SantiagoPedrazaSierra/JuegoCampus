@@ -1,6 +1,5 @@
 import { getRaces, getClasses } from './api/dndApi.js';
 import { descripcionesClases } from './clases.js';
-import { initEquipment } from './equipamiento.js'; // ✅ Import estático
 
 // ==================== RAZAS ====================
 const traducciones = {
@@ -153,7 +152,7 @@ function crearEstadisticasPersonaje(clase, raza) {
     "warlock": { hp: 14, atk: 20, def: 8 },
     "wizard": { hp: 10, atk: 28, def: 5 }
   };
-
+  
   const modClase = modificadoresClase[clase] || { hp: 0, atk: 0, def: 0 };
   const hpFinal = datosRaza.hp + modClase.hp;
   const atkFinal = datosRaza.atk + modClase.atk;
@@ -168,6 +167,131 @@ function crearEstadisticasPersonaje(clase, raza) {
   `;
 }
 
+// ==================== REVISAR PERSONAJE ====================
+function mostrarResumenPersonaje() {
+  const nombre = document.getElementById('nombre').value || 'Sin nombre';
+  const genero = document.getElementById('genero').value || 'No especificado';
+  const razaSeleccionada = todasLasRazas[indiceActual]?.index;
+  const nombreRaza = traducciones.razas[razaSeleccionada] || 'No seleccionada';
+  const nombreClase = claseSeleccionada ? claseSeleccionada.toUpperCase() : 'No seleccionada';
+  const descripcionRaza = traducciones.descripciones[razaSeleccionada] || 'Descripción no disponible';
+  const descripcionClase = descripcionesClases[claseSeleccionada] || 'Descripción no disponible';
+  
+  // Obtener estadísticas
+  let statsHTML = '';
+  if (razaSeleccionada && claseSeleccionada) {
+    statsHTML = crearEstadisticasPersonaje(claseSeleccionada, razaSeleccionada);
+  } else {
+    statsHTML = '<div class="stat-item" style="grid-column: 1 / -1;"><p>Faltan seleccionar raza y/o clase</p></div>';
+  }
+
+  // Obtener equipamiento seleccionado
+  const equipmentItems = [];
+  const selects = document.querySelectorAll('#equipment-container select');
+  selects.forEach(select => {
+    if (select.value) {
+      equipmentItems.push(`<li class="equipment-item">${select.selectedOptions[0].text}</li>`);
+    }
+  });
+  const equipmentHTML = equipmentItems.length > 0 ? 
+    equipmentItems.join('') : 
+    '<li class="equipment-item">No se ha seleccionado equipamiento</li>';
+
+  // Datos de raza y clase para resumen
+  const datosRaza = razaSeleccionada ? traducciones.estadisticas[razaSeleccionada] : { hp: '--', atk: '--' };
+  const modificadoresClase = claseSeleccionada ? {
+    "barbarian": { hp: 30, atk: 20, def: 15 },
+    "bard": { hp: 15, atk: 10, def: 5 },
+    "cleric": { hp: 20, atk: 15, def: 10 },
+    "druid": { hp: 18, atk: 12, def: 8 },
+    "fighter": { hp: 25, atk: 18, def: 12 },
+    "monk": { hp: 15, atk: 20, def: 10 },
+    "paladin": { hp: 22, atk: 16, def: 14 },
+    "ranger": { hp: 20, atk: 18, def: 10 },
+    "rogue": { hp: 18, atk: 22, def: 8 },
+    "sorcerer": { hp: 12, atk: 25, def: 6 },
+    "warlock": { hp: 14, atk: 20, def: 8 },
+    "wizard": { hp: 10, atk: 28, def: 5 }
+  }[claseSeleccionada] : { hp: 0, atk: 0, def: 0 };
+
+  const hpFinal = datosRaza.hp + (modificadoresClase?.hp || 0);
+  const atkFinal = datosRaza.atk + (modificadoresClase?.atk || 0);
+  const defFinal = (modificadoresClase?.def || 0);
+
+  // Crear el HTML del resumen
+  const html = `
+    <div class="character-card">
+      <div class="card-header">
+        <h1 class="card-title">${nombre.toUpperCase()}</h1>
+      </div>
+      
+      <div class="card-body">
+        <div>
+          <!-- Columna izquierda -->
+          <div class="section">
+            <img src="storade/img/${razaSeleccionada || 'default'}.jpg" alt="Imagen del personaje" class="character-image">
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">DESCRIPCIÓN</h2>
+            <p><strong>Raza:</strong> ${nombreRaza}</p>
+            <p><strong>Clase:</strong> ${nombreClase}</p>
+            <p><strong>Género:</strong> ${genero.charAt(0).toUpperCase() + genero.slice(1)}</p>
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">HISTORIA</h2>
+            <p><strong>Raza:</strong> ${descripcionRaza}</p>
+            <p><strong>Clase:</strong> ${descripcionClase}</p>
+          </div>
+        </div>
+        
+        <div >
+          <!-- Columna derecha -->
+          <div class="section">
+            <h2 class="section-title">ESTADÍSTICAS</h2>
+            <div class="stats-grid">
+              ${statsHTML}
+            </div>
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">EQUIPO</h2>
+            <ul class="equipment-list">
+              ${equipmentHTML}
+            </ul>
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">RESUMEN</h2>
+            <ul class="equipment-list">
+              <li class="equipment-item"><strong>HP Base:</strong> ${datosRaza.hp} + ${modificadoresClase?.hp || 0} = ${hpFinal}</li>
+              <li class="equipment-item"><strong>ATK Base:</strong> ${datosRaza.atk} + ${modificadoresClase?.atk || 0} = ${atkFinal}</li>
+              <li class="equipment-item"><strong>DEF Base:</strong> ${defFinal}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div style="background-color: var(--color-dark); padding: 10px; text-align: center;">
+        <p style="margin: 0; color: var(--color-primary);">HP: ${hpFinal} | ATK: ${atkFinal} | DEF: ${defFinal}</p>
+      </div>
+    </div>
+  `;
+
+  // Crear o actualizar el contenedor de revisión
+  const reviewSection = document.getElementById('review-container');
+  if (reviewSection) {
+    reviewSection.innerHTML = html;
+  } else {
+    const section = document.createElement('section');
+    section.id = 'review-container';
+    section.classList.add('section_card');
+    section.innerHTML = html;
+    document.querySelector('main.container').appendChild(section);
+  }
+}
+
 // ==================== PESTAÑAS ====================
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', async () => {
@@ -175,11 +299,14 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
+    // Ocultar todas las secciones
     document.getElementById('raza-container').classList.add('hidden');
     document.getElementById('clase-container').classList.add('hidden');
     document.getElementById('formulario-inicial').classList.add('hidden');
     document.getElementById('estadisticas-container').classList.add('hidden');
     document.getElementById('equipo-container').classList.add('hidden');
+    const reviewSection = document.getElementById('review-container');
+    if (reviewSection) reviewSection.classList.add('hidden');
 
     if (tabId === 'raza') {
       document.getElementById('raza-container').classList.remove('hidden');
@@ -209,7 +336,23 @@ document.querySelectorAll('.tab').forEach(tab => {
       }
     } else if (tabId === 'equipo') {
       document.getElementById('equipo-container').classList.remove('hidden');
-      initEquipment(); // ✅ Llamar directamente la función
+      const container = document.getElementById('equipment-container');
+      if (!container.dataset.loaded) {
+        try {
+          const { initEquipment } = await import('./equipamiento.js');
+          initEquipment();
+          container.dataset.loaded = "true";
+        } catch (error) {
+          container.innerHTML = '<p class="error">Error al cargar el equipamiento</p>';
+          console.error("Error al cargar equipamiento:", error);
+        }
+      }
+    } else if (tabId === 'review') {
+      mostrarResumenPersonaje();
+      const reviewSection = document.getElementById('review-container');
+      if (reviewSection) {
+        reviewSection.classList.remove('hidden');
+      }
     }
   });
 });
@@ -219,9 +362,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('raza-container').classList.remove('hidden');
   document.getElementById('formulario-inicial').classList.remove('hidden');
   await cargarRazas();
-
-  // ✅ Inicialización desde el tab si se desea
-  document.getElementById('equipo-tab').addEventListener('click', () => {
-    initEquipment();
-  });
 });
