@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forjador de Aventureros</title>
+  <link rel="stylesheet" href="css/page1.css">
+</head>
+
+<body>
+  <header>
+    <section class="section_header">
+      <article class="logo">
+        <img src="storade/img/logo.png" alt="">
+        <h1>Forjador de Aventureros</h1>
+      </article>
+      <article class="options">
+        <a href="#como_funciona">¿Como funciona?</a>
+        <button class="button"><a href="">Comenzar</a></button>
+      </article>
+        
+      </article>
+    </section>
+  </header>
+  <main>
+    <section class="section_main">
+      <h1>¡Bienvenido al Forjador de Aventureros!</h1>
+      <div class="arrow-down" onclick="scrollToInfo()">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(254, 217, 4, 0.943)">
+          <path d="M7 10l5 5 5-5z" />
+        </svg>
+      </div>
+    </section>
+
+    <script>
+      function scrollToInfo() {
+        document.querySelector('.section_info').scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    </script>
+
+    <section class="section_info">
+      <section class="section_text">
+        <article class="p1">
+          <p>
+            ¿Alguna vez soñaste con empuñar una espada mágica, lanzar hechizos arcanos o explorar tierras inexploradas
+            al estilo retro? ¡Este es tu portal al mundo de la fantasía pixelada! Aquí podrás dar forma a tu propio
+            héroe (o villano), con todo el estilo de los juegos clásicos de 16 bits y la esencia épica de Dungeons &
+            Dragons.
+          </p>
+        </article>
+      </section>
+      <section id="como_funciona" class="section_funcionamiento">
+        <article class="p2">
+          <p><strong>¿Cómo funciona este artefacto mágico?</strong></p>
+        </article>
+        <article class="list">
+          <ul>
+            <li><strong>Elige tu raza:</strong> Elfo, Enano, Humano, Tiflin y más.</li>
+            <li><strong>Escoge tu clase:</strong> Guerrero, Mago, Clérigo, Pícaro y más.</li>
+            <li><strong>Crea su historia:</strong> Origen, motivaciones, secretos y sueños.</li>
+            <li><strong>Guarda, comparte y juega:</strong> Exporta tu personaje para cualquier aventura.</li>
+          </ul>
+        </article>
+
+        <article class="p3">
+          <p>
+            Este creador utiliza el encantador estilo <strong>pixel art</strong>, lo que le da a tus personajes un toque
+            nostálgico, como salido directamente de un cartucho mágico de la vieja escuela.
+          </p>
+        </article>
+        <article class="p4">
+          <p>
+            <strong>¿</strong>Estás listo para invocar a tu héroe, forjar su destino y comenzar tu
+            aventura<strong>?</strong>
+          </p>
+        </article>
+      </section>
+
+
+    </section>
+
+    <section class="section_boton">
+      <article class="boton">
+        <a href="crear-personaje.html">¡Comenzar Aventura!</a>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>
