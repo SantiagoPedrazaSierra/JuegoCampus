@@ -410,3 +410,44 @@ select option[disabled] {
     width: 100%;
   }
 }
+
+
+#equipment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "1_Minecraft-Regular";
+}
+
+#equipment-container label {
+  color: var(--color-amarillo);
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+#equipment-container select {
+  background-color: var(--color-gris-oscuro);
+  color: var(--color-blanco);
+  border: 2px solid var(--color-blanco);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: "1_Minecraft-Regular";
+  cursor: pointer;
+}
+
+
+.equipment-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--color-blanco);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h1{
+    color: white;
+  }
+  
+}

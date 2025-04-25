@@ -1,5 +1,6 @@
 import { getRaces, getClasses } from './api/dndApi.js';
 import { descripcionesClases } from './clases.js';
+import { initEquipment } from './equipamiento.js'; // ✅ Import estático
 
 // ==================== RAZAS ====================
 const traducciones = {
@@ -152,7 +153,7 @@ function crearEstadisticasPersonaje(clase, raza) {
     "warlock": { hp: 14, atk: 20, def: 8 },
     "wizard": { hp: 10, atk: 28, def: 5 }
   };
-  
+
   const modClase = modificadoresClase[clase] || { hp: 0, atk: 0, def: 0 };
   const hpFinal = datosRaza.hp + modClase.hp;
   const atkFinal = datosRaza.atk + modClase.atk;
@@ -174,7 +175,6 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
-    // Ocultar todas las secciones
     document.getElementById('raza-container').classList.add('hidden');
     document.getElementById('clase-container').classList.add('hidden');
     document.getElementById('formulario-inicial').classList.add('hidden');
@@ -209,17 +209,7 @@ document.querySelectorAll('.tab').forEach(tab => {
       }
     } else if (tabId === 'equipo') {
       document.getElementById('equipo-container').classList.remove('hidden');
-      const container = document.getElementById('equipment-container');
-      if (!container.dataset.loaded) {
-        try {
-          const { initEquipment } = await import('./equipamiento.js');
-          initEquipment();
-          container.dataset.loaded = "true";
-        } catch (error) {
-          container.innerHTML = '<p class="error">Error al cargar el equipamiento</p>';
-          console.error("Error al cargar equipamiento:", error);
-        }
-      }
+      initEquipment(); // ✅ Llamar directamente la función
     }
   });
 });
@@ -229,4 +219,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('raza-container').classList.remove('hidden');
   document.getElementById('formulario-inicial').classList.remove('hidden');
   await cargarRazas();
+
+  // ✅ Inicialización desde el tab si se desea
+  document.getElementById('equipo-tab').addEventListener('click', () => {
+    initEquipment();
+  });
 });
