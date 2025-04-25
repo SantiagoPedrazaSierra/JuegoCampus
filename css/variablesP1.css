@@ -1,5 +1,4 @@
 :root {
-<<<<<<< HEAD
     /* Colores principales */
     --color-amarillo: #FED904;
     --color-negro: #000000;
@@ -18,16 +17,6 @@
 
     /* Otros */
     --color-modificador: #00FFC3;
-=======
-    --blood-red: #7b1e1e;
-    --ancient-gold: #d4af37;
-    --steel-gray: #3c3c3c;
-    --pale-stone: #e5e0d8;
-    --dark-wine: #3a0d0d;
-    --moss-green: #4c5c3a;
-    --arcane-blue: #2e3a59;
-    
->>>>>>> main
 }
 
 
@@ -35,17 +24,8 @@
     font-family: "PressStart2P";
     src: url(../storade/font/PressStart2P-Regular.ttf);
 }
-<<<<<<< HEAD
 
 @font-face {
     font-family: "1_Minecraft-Regular";
     src: url(../storade/font/1_Minecraft-Regular.otf);
 }
-=======
-@font-face {
-    font-family:"minecraft_font";
-    src: url(../storade/font/1_Minecraft-Regular.otf);
-}
-
-
->>>>>>> main

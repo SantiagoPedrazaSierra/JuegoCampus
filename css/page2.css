@@ -114,6 +114,7 @@ body {
   cursor: pointer;
   transition: all 0.3s;
   margin-left: auto;
+  white-space: nowrap;
 }
 
 .boton-personajes:hover {
@@ -889,6 +890,7 @@ select option[disabled] {
   .stats {
     font-size: 16px;
   }
+
   #equipo-container .h1-3 {
     font-size: 10px;
   }
@@ -901,20 +903,25 @@ select option[disabled] {
   .class-card h3 {
     font-size: 18px;
   }
+
   .card-title {
     font-size: 18px;
   }
+
   .class-card p {
     font-size: 14px;
   }
+
   .stats-title {
     font-size: 18px;
   }
+
   .stats-summary {
     font-size: 15px;
     flex-direction: column;
   }
-  .section_stats{
+
+  .section_stats {
     font-size: 15px;
   }
 }
