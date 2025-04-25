@@ -1,16 +1,13 @@
-/* ==================== IMPORTS Y RESET ==================== */
+/* ==================== IMPORTS Y VARIABLES ==================== */
 @import url('variablesP1.css');
 
-
-
-/* Reset básico para todos los elementos */
+/* ==================== RESET Y ESTILOS BASE ==================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ==================== ESTILOS GENERALES ==================== */
 body {
   background: var(--color-negro);
   margin: 0;
@@ -24,6 +21,16 @@ body {
   background-attachment: fixed;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.loading {
+  color: var(--color-amarillo);
+  font-family: "1_Minecraft-Regular";
+}
+
+/* ==================== LAYOUT PRINCIPAL ==================== */
 .container {
   width: 90%;
   max-width: 1000px;
@@ -33,28 +40,13 @@ body {
   padding: 20px;
 }
 
-.hidden {
-  display: none !important;
-}
-
-/* ==================== HEADER Y NAVEGACIÓN ==================== */
+/* ==================== HEADER ==================== */
 .section_header {
   display: flex;
-  flex-direction: row;
-  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
   padding: 12px;
-}
-
-.boton-atras {
-  font-family: "1_Minecraft-Regular";
-  background: var(--color-negro);
-  border: none;
-}
-
-.boton-atras a {
-  font-size: 60px;
-  text-decoration: none;
-  color: var(--color-amarillo);
 }
 
 .title_main {
@@ -66,6 +58,7 @@ body {
   font-family: "PressStart2P";
 }
 
+/* ==================== COMPONENTES DE NAVEGACIÓN ==================== */
 .tabs {
   display: flex;
   justify-content: space-between;
@@ -97,7 +90,93 @@ body {
   background: #333 !important;
 }
 
-/* ==================== FORMULARIOS Y ENTRADAS ==================== */
+/* ==================== BOTONES ==================== */
+.boton-atras {
+  font-family: "1_Minecraft-Regular";
+  background: var(--color-negro);
+  border: none;
+}
+
+.boton-atras a {
+  font-size: 60px;
+  text-decoration: none;
+  color: var(--color-amarillo);
+}
+
+.boton-personajes {
+  background-color: var(--color-amarillo);
+  color: var(--color-negro);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: "1_Minecraft-Regular";
+  font-size: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: auto;
+}
+
+.boton-personajes:hover {
+  background-color: #f0c900;
+  transform: scale(1.05);
+}
+
+.boton_atras button {
+  background: var(--color-negro);
+  color: var(--color-amarillo);
+  border: none;
+  display: flex;
+  padding: 30px;
+  font-size: 70px;
+  font-family: "1_Minecraft-Regular";
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.boton_atras button:hover {
+  transform: scale(1.1);
+  color: var(--color-blanco);
+}
+
+#btn-guardar {
+  background-color: var(--color-amarillo);
+  color: black;
+  border: none;
+  padding: 18px 24px;
+  font-size: 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  font-family: "1_Minecraft-Regular";
+  transition: all 0.3s;
+}
+
+#btn-guardar:hover {
+  background-color: #f0c900;
+  transform: scale(1.05);
+}
+
+#btn-ver-personajes {
+  background-color: var(--color-blanco);
+  color: black;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+  font-family: "1_Minecraft-Regular";
+  transition: all 0.3s;
+}
+
+#btn-ver-personajes:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+/* ==================== FORMULARIOS ==================== */
 #formulario-inicial {
   display: flex;
   flex-direction: column;
@@ -113,7 +192,8 @@ body {
   color: var(--color-amarillo);
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 12px;
   margin-top: 5px;
@@ -152,7 +232,7 @@ select option[disabled] {
   font-size: 25px !important;
 }
 
-/* ==================== SECCIÓN DE RAZAS ==================== */
+/* ==================== SECCIÓN RAZAS ==================== */
 .section_razas {
   display: flex;
   justify-content: row;
@@ -177,6 +257,7 @@ select option[disabled] {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  cursor: pointer;
 }
 
 .card::before {
@@ -244,23 +325,7 @@ select option[disabled] {
   z-index: 1;
 }
 
-.boton_atras button {
-  background: var(--color-negro);
-  color: var(--color-amarillo);
-  border: none;
-  display: flex;
-  padding: 30px;
-  font-size: 70px;
-  font-family: "1_Minecraft-Regular";
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.boton_atras button:hover {
-  transform: scale(1.1);
-  color: var(--color-blanco);
-}
-/* ==================== SECCIÓN DE CLASES ==================== */
+/* ==================== SECCIÓN CLASES ==================== */
 #class-card-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -268,10 +333,9 @@ select option[disabled] {
   margin-top: 20px;
 }
 
-/* Estilo base para todas las tarjetas de clase - Sin bordes */
 .class-card {
   background-color: rgba(255, 255, 255, 0.1);
-  border: none; /* Eliminamos completamente el borde */
+  border: none;
   border-radius: 8px;
   padding: 20px;
   color: var(--color-blanco);
@@ -283,21 +347,17 @@ select option[disabled] {
   cursor: pointer;
 }
 
-/* Efecto hover sin bordes */
 .class-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 20px rgba(254, 217, 4, 0.3);
   background-color: rgba(254, 217, 4, 0.05);
 }
 
-/* Estilo seleccionado sin bordes */
 .class-card.selected {
   background-color: rgba(254, 217, 4, 0.1);
   box-shadow: 0 0 20px rgba(254, 217, 4, 0.5);
-  /* No hay propiedad border aquí */
 }
 
-/* Estilos del texto */
 .class-card h3 {
   color: var(--color-amarillo);
   font-size: 25px;
@@ -312,7 +372,8 @@ select option[disabled] {
   line-height: 1.4;
   margin-top: 10px;
 }
-/* ==================== SECCIÓN DE ESTADÍSTICAS ==================== */
+
+/* ==================== SECCIÓN ESTADÍSTICAS ==================== */
 .stats-container {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -336,11 +397,12 @@ select option[disabled] {
   gap: 15px;
 }
 
-.stat-item {
+.stat-container {
   border: 2px solid var(--color-blanco);
   border-radius: 8px;
   padding: 15px;
   text-align: center;
+  overflow: hidden;
 }
 
 .stat-name {
@@ -369,15 +431,17 @@ select option[disabled] {
   padding: 30px;
   margin-top: 20px;
   color: var(--color-blanco);
-  font-size: 18px;
+  font-size: 25px;
   align-items: center;
   justify-content: center;
   gap: 10px;
   font-family: "1_Minecraft-Regular";
   border: 2px solid var(--color-blanco);
-  strong{
-    color: var(--color-amarillo);
-  }
+  border-radius: 10px;
+}
+
+.stats-summary strong {
+  color: var(--color-amarillo);
 }
 
 .stats-summary span {
@@ -386,7 +450,162 @@ select option[disabled] {
   font-family: "1_Minecraft-Regular";
 }
 
-/* ==================== REVISAR PERSONAJE ==================== */
+.section_stats {
+  color: var(--color-blanco);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  font-size: 30px;
+}
+
+.section_stats strong {
+  color: var(--color-amarillo);
+}
+
+/* ==================== SECCIÓN EQUIPO ==================== */
+#equipo-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 20px;
+
+}
+
+#equipo-container .h1-3 {
+  color: var(--color-amarillo);
+  font-family: "PressStart2P", sans-serif;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.equipment-card {
+  border-radius: 8px;
+  padding: 25px;
+  font-family: "1_Minecraft-Regular";
+  font-size: 28px;
+  color: var(--color-amarillo);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.equipment-card .text_loading {
+  color: var(--color-blanco);
+  font-size: 24px;
+  text-align: center;
+  font-family: "1_Minecraft-Regular";
+}
+
+/* Selectores de equipo */
+.equipment-selector {
+  margin-bottom: 25px;
+}
+
+.equipment-selector label {
+  display: block;
+  color: var(--color-amarillo);
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-family: "1_Minecraft-Regular", sans-serif;
+}
+
+.equipment-selector select {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-gris-oscuro);
+  color: var(--color-blanco);
+  border: 2px solid var(--color-amarillo);
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: "1_Minecraft-Regular", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.equipment-selector select:hover {
+  border-color: var(--color-blanco);
+  box-shadow: 0 0 10px rgba(254, 217, 4, 0.5);
+}
+
+.equipment-selector select:focus {
+  outline: none;
+  border-color: var(--color-blanco);
+  background-color: var(--color-negro);
+}
+
+/* Lista de equipo seleccionado */
+.equipment-selected {
+  margin-top: 30px;
+}
+
+.equipment-selected h2 {
+  color: var(--color-amarillo);
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-family: "1_Minecraft-Regular", sans-serif;
+  border-bottom: 1px solid var(--color-amarillo);
+  padding-bottom: 5px;
+}
+
+.equipment-list {
+  list-style-type: none;
+}
+
+.equipment-item {
+  background-color: rgba(254, 217, 4, 0.1);
+  border-left: 3px solid var(--color-amarillo);
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 20px;
+  color: var(--color-blanco);
+  font-family: "1_Minecraft-Regular", sans-serif;
+  transition: all 0.3s;
+}
+
+.equipment-item:hover {
+  background-color: rgba(254, 217, 4, 0.2);
+  transform: translateX(5px);
+}
+
+/* Botones de equipo */
+.equipment-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.equipment-btn {
+  background-color: var(--color-amarillo);
+  color: var(--color-negro);
+  border: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "1_Minecraft-Regular", sans-serif;
+  transition: all 0.3s;
+}
+
+.equipment-btn:hover {
+  background-color: var(--color-blanco);
+  transform: scale(1.05);
+}
+
+.equipment-btn.secondary {
+  background-color: transparent;
+  color: var(--color-amarillo);
+  border: 1px solid var(--color-amarillo);
+}
+
+.equipment-btn.secondary:hover {
+  background-color: rgba(254, 217, 4, 0.1);
+}
+
+
+/* ==================== SECCIÓN REVISAR PERSONAJE ==================== */
 .character-card {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -435,6 +654,17 @@ select option[disabled] {
   padding: 15px;
 }
 
+.section_left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section_rigth {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
 .section-title {
   font-size: 25px;
@@ -444,12 +674,6 @@ select option[disabled] {
   font-family: "1_Minecraft-Regular";
   border-bottom: 1px solid var(--color-blanco);
   padding-bottom: 5px;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
 }
 
 .stat-item {
@@ -463,108 +687,291 @@ select option[disabled] {
   font-family: "1_Minecraft-Regular";
 }
 
-.equipment-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.equipment-item {
-  background-color: var(--color-gris-oscuro);
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  font-size: 18px;
-  color: var(--color-blanco);
-  font-family: "1_Minecraft-Regular";
-}
-
-/* Responsive */
+/* ==================== MEDIA QUERIES RESPONSIVE ==================== */
 @media (max-width: 768px) {
-  .card-body {
-    grid-template-columns: 1fr;
-  }
-}
 
-
-/* Responsive */
-@media (max-width: 768px) {
-  .card-body {
-    grid-template-columns: 1fr;
-  }
-}
-/* ==================== MEDIA QUERIES (RESPONSIVE) ==================== */
-@media (max-width: 768px) {
+  /* Ajustes generales del contenedor */
   .container {
+    gap: 15px;
+    padding: 10px;
+    width: 95%;
+  }
+
+  /* Header y título */
+  .section_header {
+    align-items: center;
     gap: 20px;
     padding: 10px;
   }
 
+  .title_main {
+    font-size: 15px;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .boton-atras {
+    align-self: flex-start;
+  }
+
+  .boton-atras a {
+    font-size: 40px;
+  }
+
+  /* Pestañas de navegación */
   .tabs {
     flex-wrap: wrap;
+    gap: 5px;
   }
 
   .tab {
-    font-size: 20px;
-    padding: 8px;
+    font-size: 16px;
+    padding: 8px 5px;
+    flex: 1 0 calc(50% - 10px);
+    min-width: 120px;
   }
 
+  /* Sección de razas - Tarjeta */
   .section_razas {
-    flex-direction: column;
+    margin-top: 30px;
+    padding-bottom: 30px;
   }
 
   .card {
-    width: 100%;
+    width: 70%;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .stats {
+    font-size: 20px;
+    gap: 10px;
+  }
+
+  /* Botones de navegación */
+  .boton_atras button {
+    padding: 15px;
+    font-size: 40px;
+  }
+
+  /* Sección de clases */
+  #class-card-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .class-card {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .class-card h3 {
+    font-size: 20px;
+  }
+
+  .class-card p {
+    font-size: 16px;
+  }
+
+  /* Sección de estadísticas */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-container {
+    padding: 10px;
+  }
+
+  .stat-name {
+    font-size: 16px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+
+  /* Sección revisar personaje */
+  .card-body {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card-title {
+    font-size: 24px;
   }
 }
 
+/* Ajustes adicionales para pantallas muy pequeñas (menos de 400px) */
+@media (max-width: 400px) {
+  .title_main {
+    font-size: 10px;
+  }
 
-#equipment-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-family: "1_Minecraft-Regular";
+  .tab {
+    font-size: 14px;
+    padding: 6px 3px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .image-box {
+    height: 200px;
+  }
 }
 
-#equipment-container label {
-  color: var(--color-amarillo);
-  font-size: 24px;
-  margin-bottom: 5px;
+@media (max-width: 320px) {
+  .title_main {
+    font-size: 9px;
+  }
+
+  .boton-personajes {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .tab {
+    font-size: 12px;
+    padding: 5px 2px;
+    min-width: 100px;
+  }
+
+  #formulario-inicial label {
+    font-size: 20px;
+
+  }
+
+  input::placeholder {
+    font-size: 18px;
+  }
+
+  select,
+  select option {
+    font-size: 18px;
+  }
+
+  .card {
+    width: 90%;
+    padding: 12px;
+  }
+
+  #btn-guardar {
+    font-size: 20px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .flecha {
+    font-size: 24px;
+  }
+
+  .stats {
+    font-size: 16px;
+  }
+  #equipo-container .h1-3 {
+    font-size: 10px;
+  }
+
+  .equipment-card {
+    font-size: 15px;
+    gap: 20px;
+  }
+
+  .class-card h3 {
+    font-size: 18px;
+  }
+  .card-title {
+    font-size: 18px;
+  }
+  .class-card p {
+    font-size: 14px;
+  }
+  .stats-title {
+    font-size: 18px;
+  }
+  .stats-summary {
+    font-size: 15px;
+    flex-direction: column;
+  }
+  .section_stats{
+    font-size: 15px;
+  }
 }
 
-#equipment-container select {
-  background-color: var(--color-gris-oscuro);
-  color: var(--color-blanco);
-  border: 2px solid var(--color-blanco);
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 20px;
-  font-family: "1_Minecraft-Regular";
-  cursor: pointer;
-}
+@media (min-width: 321px) and (max-width: 414px) {
+  .title_main {
+    font-size: 10px;
+  }
 
+  .boton-personajes {
+    font-size: 12px;
+    white-space: nowrap;
+  }
 
-.equipment-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px var(--color-blanco);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+  .tab {
+    font-size: 10px;
+    padding: 6px 4px;
+  }
 
-.equipment-card h1 {
-  color: white;
-}
+  .card {
+    width: 85%;
+    padding: 15px;
+  }
 
-.h1-3{
-  color: var(--color-amarillo);
-  font-family: "1_Minecraft-Regular";
- margin: 20px;
-}
+  .title {
+    font-size: 22px;
+  }
 
-.loading {
-  color: var(--color-amarillo);
-  font-family: "1_Minecraft-Regular";
+  .description {
+    font-size: 16px;
+  }
+
+  .flecha {
+    font-size: 28px;
+  }
+
+  .stats {
+    font-size: 18px;
+  }
+
+  .section_stats {
+    font-size: 20px;
+  }
+
+  #equipo-container .h1-3 {
+    font-size: 10px;
+  }
+
+  .equipment-card {
+    font-size: 15px;
+  }
+
+  .class-card h3 {
+    font-size: 10px;
+  }
+
+  .class-card p {
+    font-size: 15px;
+  }
 }

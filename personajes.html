@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Personajes D&D</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/personajes.css">
+</head>
+<body>
+  <main class="container">
+    <h1 class="title_main">MIS PERSONAJES</h1>
+    
+    <div id="filtros" class="filtros-container">
+      <input type="text" id="buscar-personaje" placeholder="Buscar por nombre...">
+      <select id="filtro-clase">
+        <option value="">Todas las clases</option>
+        <option value="barbarian">Bárbaro</option>
+        <!-- Añade más opciones de clase según necesites -->
+      </select>
+    </div>
+    
+    <div id="personajes-container" class="personajes-container">
+      <!-- Los personajes se cargarán aquí dinámicamente -->
+    </div>
+    
+    <button class="btn-volver" id="btn-volver"> <a href="index2.html">Volver al Creador</a></button>
+  </main>
+
+  <script src="js/personajes.js" type="module"></script>
+</body>
+</html>

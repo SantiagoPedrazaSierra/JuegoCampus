@@ -1,0 +1,335 @@
+/* ==================== IMPORTS Y RESET ==================== */
+@import url('variablesP1.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==================== ESTILOS GENERALES ==================== */
+body {
+  background: var(--color-negro);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==================== BASE ==================== */
+.personajes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  font-family: "1_Minecraft-Regular";
+}
+
+.title_main {
+  font-family: "PressStart2P";
+  color: var(--color-amarillo);
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* ==================== TARJETAS ==================== */
+.personaje-card {
+  background: var(--color-gris-fondo);
+  border: 2px solid var(--color-blanco);
+  border-radius: 10px;
+  padding: 20px;
+  color: var(--color-blanco);
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.personaje-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(254, 217, 4, 0.3);
+}
+
+/* ==================== ENCABEZADO TARJETA ==================== */
+.personaje-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-amarillo);
+}
+
+.personaje-nombre {
+  font-size: 1.5rem;
+  color: var(--color-amarillo);
+  margin: 0;
+  font-family: "PressStart2P";
+  text-transform: uppercase;
+}
+
+.personaje-fecha {
+  font-size: 0.9rem;
+  color: var(--color-gris-claro);
+  font-family: "1_Minecraft-Regular";
+}
+
+/* ==================== INFORMACIÓN ==================== */
+.personaje-card p {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  color: var(--color-blanco);
+  font-family: "1_Minecraft-Regular";
+}
+
+.personaje-card strong {
+  color: var(--color-amarillo);
+}
+
+/* ==================== ESTADÍSTICAS ==================== */
+.personaje-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.stat-badge {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-blanco);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--color-amarillo);
+  margin-bottom: 5px;
+  font-family: "1_Minecraft-Regular";
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--color-blanco);
+  font-family: "1_Minecraft-Regular";
+}
+
+/* ==================== EQUIPO ==================== */
+.personaje-equipo h3 {
+  font-size: 1.2rem;
+  color: var(--color-amarillo);
+  margin: 15px 0 10px 0;
+  font-family: "1_Minecraft-Regular";
+  border-bottom: 1px solid var(--color-amarillo);
+  padding-bottom: 5px;
+}
+
+.personaje-equipo ul {
+  list-style-type: none;
+  padding-left: 0;
+  max-height: 120px;
+  overflow-y: auto;
+  margin: 0;
+}
+
+.personaje-equipo li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: var(--color-blanco);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: "1_Minecraft-Regular";
+}
+
+/* ==================== BOTONES ==================== */
+.btn-volver {
+  background-color: var(--color-amarillo);
+  color: var(--color-negro);
+  border: none;
+  padding: 12px 24px;
+  font-size: 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 30px auto;
+  display: block;
+  font-family: "1_Minecraft-Regular";
+  transition: all 0.3s;
+  text-align: center;
+  a{
+    text-decoration: none;
+    color: var(--color-negro);
+  }
+}
+
+.btn-volver:hover {
+  background-color: #f0c900;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(254, 217, 4, 0.5);
+}
+
+/* ==================== FILTROS ==================== */
+.filtros-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  align-items: center;
+}
+
+#buscar-personaje, #filtro-clase {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 2px solid var(--color-blanco);
+  background: var(--color-gris-fondo);
+  color: var(--color-blanco);
+  font-family: "1_Minecraft-Regular";
+  font-size: 1rem;
+  flex: 1;
+}
+
+#buscar-personaje::placeholder {
+  color: var(--color-gris-claro);
+}
+
+#filtro-clase {
+  max-width: 200px;
+}
+
+/* ==================== MENSAJES ==================== */
+.sin-personajes {
+  text-align: center;
+  grid-column: 1 / -1;
+  color: var(--color-gris-claro);
+  font-size: 1.3rem;
+  padding: 40px 0;
+  font-family: "1_Minecraft-Regular";
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* Pantallas muy grandes (4K) */
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1800px;
+  }
+  
+  .personajes-container {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+  }
+  
+  .personaje-card {
+    padding: 30px;
+  }
+  
+  .personaje-nombre {
+    font-size: 2rem;
+  }
+}
+
+/* Tablets en horizontal y pantallas pequeñas */
+@media (max-width: 1024px) {
+  .personajes-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  .title_main {
+    font-size: 1.8rem;
+  }
+}
+
+/* Tablets en vertical */
+@media (max-width: 768px) {
+  .personajes-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .filtros-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #buscar-personaje, #filtro-clase {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .personaje-nombre {
+    font-size: 1.3rem;
+  }
+  
+  .stat-value {
+    font-size: 1.1rem;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 576px) {
+  body {
+    padding: 10px;
+  }
+  
+  .title_main {
+    font-size: 1.5rem;
+    padding: 15px 10px;
+  }
+  
+  .personajes-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 15px;
+  }
+  
+  .personaje-card {
+    padding: 15px;
+  }
+  
+  .personaje-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .btn-volver {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 20px auto;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 400px) {
+  .title_main {
+    font-size: 1.3rem;
+  }
+  
+  .personaje-nombre {
+    font-size: 1.1rem;
+  }
+  
+  .personaje-card p {
+    font-size: 1rem;
+  }
+  
+  .stat-badge {
+    padding: 8px 5px;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  .stat-value {
+    font-size: 1rem;
+  }
+  
+  .personaje-equipo h3 {
+    font-size: 1rem;
+  }
+  
+  .personaje-equipo li {
+    font-size: 0.9rem;
+  }
+}

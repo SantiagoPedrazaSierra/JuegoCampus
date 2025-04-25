@@ -158,12 +158,12 @@ function crearEstadisticasPersonaje(clase, raza) {
   const atkFinal = datosRaza.atk + modClase.atk;
 
   return `
-    <div class="stat-item"><div class="stat-name">FUERZA</div><div class="stat-value">${Math.floor(atkFinal * 0.8)}</div><div class="stat-modifier">+${Math.floor(atkFinal * 0.8 / 10)}</div></div>
-    <div class="stat-item"><div class="stat-name">DESTREZA</div><div class="stat-value">${Math.floor(atkFinal * 0.9)}</div><div class="stat-modifier">+${Math.floor(atkFinal * 0.9 / 10)}</div></div>
-    <div class="stat-item"><div class="stat-name">CONSTITUCIÓN</div><div class="stat-value">${Math.floor(hpFinal * 0.7)}</div><div class="stat-modifier">+${Math.floor(hpFinal * 0.7 / 10)}</div></div>
-    <div class="stat-item"><div class="stat-name">INTELIGENCIA</div><div class="stat-value">${clase.includes('wizard') ? 18 : Math.floor(atkFinal * 0.6)}</div><div class="stat-modifier">+${clase.includes('wizard') ? 4 : Math.floor(atkFinal * 0.6 / 10)}</div></div>
-    <div class="stat-item"><div class="stat-name">SABIDURÍA</div><div class="stat-value">${clase.includes('cleric') ? 16 : Math.floor(hpFinal * 0.5)}</div><div class="stat-modifier">+${clase.includes('cleric') ? 3 : Math.floor(hpFinal * 0.5 / 10)}</div></div>
-    <div class="stat-item"><div class="stat-name">CARISMA</div><div class="stat-value">${clase.includes('bard') ? 18 : Math.floor(atkFinal * 0.4)}</div><div class="stat-modifier">+${clase.includes('bard') ? 4 : Math.floor(atkFinal * 0.4 / 10)}</div></div>
+    <div class="stat-container"><div class="stat-name">FUERZA</div><div class="stat-value">${Math.floor(atkFinal * 0.8)}</div><div class="stat-modifier">+${Math.floor(atkFinal * 0.8 / 10)}</div></div>
+    <div class="stat-container"><div class="stat-name">DESTREZA</div><div class="stat-value">${Math.floor(atkFinal * 0.9)}</div><div class="stat-modifier">+${Math.floor(atkFinal * 0.9 / 10)}</div></div>
+    <div class="stat-container"><div class="stat-name">CONSTITUCIÓN</div><div class="stat-value">${Math.floor(hpFinal * 0.7)}</div><div class="stat-modifier">+${Math.floor(hpFinal * 0.7 / 10)}</div></div>
+    <div class="stat-container"><div class="stat-name">INTELIGENCIA</div><div class="stat-value">${clase.includes('wizard') ? 18 : Math.floor(atkFinal * 0.6)}</div><div class="stat-modifier">+${clase.includes('wizard') ? 4 : Math.floor(atkFinal * 0.6 / 10)}</div></div>
+    <div class="stat-container"><div class="stat-name">SABIDURÍA</div><div class="stat-value">${clase.includes('cleric') ? 16 : Math.floor(hpFinal * 0.5)}</div><div class="stat-modifier">+${clase.includes('cleric') ? 3 : Math.floor(hpFinal * 0.5 / 10)}</div></div>
+    <div class="stat-container"><div class="stat-name">CARISMA</div><div class="stat-value">${clase.includes('bard') ? 18 : Math.floor(atkFinal * 0.4)}</div><div class="stat-modifier">+${clase.includes('bard') ? 4 : Math.floor(atkFinal * 0.4 / 10)}</div></div>
   `;
 }
 
@@ -226,7 +226,7 @@ function mostrarResumenPersonaje() {
       </div>
       
       <div class="card-body">
-        <div>
+        <div class="section_left">
           <!-- Columna izquierda -->
           <div class="section">
             <img src="storade/img/${razaSeleccionada || 'default'}.jpg" alt="Imagen del personaje" class="character-image">
@@ -246,7 +246,7 @@ function mostrarResumenPersonaje() {
           </div>
         </div>
         
-        <div >
+        <div class="section_rigth">
           <!-- Columna derecha -->
           <div class="section">
             <h2 class="section-title">ESTADÍSTICAS</h2>
@@ -265,16 +265,16 @@ function mostrarResumenPersonaje() {
           <div class="section">
             <h2 class="section-title">RESUMEN</h2>
             <ul class="equipment-list">
-              <li class="equipment-item"><strong>HP Base:</strong> ${datosRaza.hp} + ${modificadoresClase?.hp || 0} = ${hpFinal}</li>
-              <li class="equipment-item"><strong>ATK Base:</strong> ${datosRaza.atk} + ${modificadoresClase?.atk || 0} = ${atkFinal}</li>
-              <li class="equipment-item"><strong>DEF Base:</strong> ${defFinal}</li>
+              <li class="equipment-item"><strong>HP:</strong> ${datosRaza.hp} + ${modificadoresClase?.hp || 0} = ${hpFinal}</li>
+              <li class="equipment-item"><strong>ATK:</strong> ${datosRaza.atk} + ${modificadoresClase?.atk || 0} = ${atkFinal}</li>
+              <li class="equipment-item"><strong>DEF:</strong> ${defFinal}</li>
             </ul>
           </div>
         </div>
       </div>
       
-      <div style="background-color: var(--color-dark); padding: 10px; text-align: center;">
-        <p style="margin: 0; color: var(--color-primary);">HP: ${hpFinal} | ATK: ${atkFinal} | DEF: ${defFinal}</p>
+      <div class= "section_stats">
+        <p><strong>HP:</strong> ${hpFinal} | <strong>ATK:</strong> ${atkFinal} | <strong>DEF:</strong> ${defFinal}</p>
       </div>
     </div>
   `;
@@ -327,8 +327,8 @@ document.querySelectorAll('.tab').forEach(tab => {
           <p>Personaje:</p>
           <p>Raza: <strong>${traducciones.razas[razaSeleccionada]}</strong></p>
           <p>Clase: <strong>${claseSeleccionada.toUpperCase()}</strong></p>
-          <p>HP Base: <span>${traducciones.estadisticas[razaSeleccionada].hp}</span></p>
-          <p>ATK Base: <span>${traducciones.estadisticas[razaSeleccionada].atk}</span></p>
+          <p>HP: <span>${traducciones.estadisticas[razaSeleccionada].hp}</span></p>
+          <p>ATK: <span>${traducciones.estadisticas[razaSeleccionada].atk}</span></p>
         `;
       } else {
         contenedorEstadisticas.innerHTML = `<div class="stat-item" style="grid-column: 1 / -1;"><p>Por favor, selecciona una raza y una clase primero.</p></div>`;
@@ -362,4 +362,97 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('raza-container').classList.remove('hidden');
   document.getElementById('formulario-inicial').classList.remove('hidden');
   await cargarRazas();
+});
+
+// ==================== SISTEMA DE GUARDADO ====================
+function guardarPersonaje() {
+  const nombre = document.getElementById('nombre').value;
+  if (!nombre) {
+    alert("Por favor ingresa un nombre para tu personaje");
+    return;
+  }
+
+  const personaje = {
+    nombre: nombre,
+    genero: document.getElementById('genero').value,
+    raza: todasLasRazas[indiceActual]?.index,
+    clase: claseSeleccionada,
+    equipo: obtenerEquipamientoSeleccionado(),
+    stats: calcularStatsCompletas(),
+    fechaCreacion: new Date().toISOString()
+  };
+
+  // Obtener personajes existentes o crear array vacío
+  const personajesGuardados = JSON.parse(localStorage.getItem('personajesDND')) || [];
+  
+  // Añadir nuevo personaje
+  personajesGuardados.push(personaje);
+  
+  // Guardar en localStorage
+  localStorage.setItem('personajesDND', JSON.stringify(personajesGuardados));
+  
+  alert(`Personaje "${nombre}" guardado correctamente!`);
+}
+
+function obtenerEquipamientoSeleccionado() {
+  const equipos = [];
+  document.querySelectorAll('#equipment-container select').forEach(select => {
+    if (select.value) {
+      equipos.push({
+        nombre: select.selectedOptions[0].text,
+        tipo: select.previousElementSibling.textContent,
+        id: select.value
+      });
+    }
+  });
+  return equipos;
+}
+
+function calcularStatsCompletas() {
+  const raza = todasLasRazas[indiceActual]?.index;
+  const clase = claseSeleccionada;
+  
+  if (!raza || !clase) return null;
+  
+  const datosRaza = traducciones.estadisticas[raza] || { hp: 100, atk: 100 };
+  const modClase = {
+    "barbarian": { hp: 30, atk: 20, def: 15 },
+    // ... (resto de clases)
+  }[clase] || { hp: 0, atk: 0, def: 0 };
+
+  return {
+    hp: datosRaza.hp + modClase.hp,
+    atk: datosRaza.atk + modClase.atk,
+    def: modClase.def,
+    fuerza: Math.floor((datosRaza.atk + modClase.atk) * 0.8),
+    // ... (resto de stats)
+  };
+}
+
+// Añadir botón de guardado (debes añadir este botón en tu HTML)
+document.addEventListener('DOMContentLoaded', () => {
+  const btnGuardar = document.createElement('button');
+  btnGuardar.id = 'btn-guardar';
+  btnGuardar.textContent = 'Guardar Personaje';
+  btnGuardar.addEventListener('click', guardarPersonaje);
+  document.querySelector('main.container').appendChild(btnGuardar);
+});
+
+// ==================== BOTÓN VER PERSONAJES ====================
+document.addEventListener('DOMContentLoaded', () => {
+  // ... código existente ...
+  
+  // Añadir funcionalidad al botón de personajes
+  const btnPersonajes = document.getElementById('btn-personajes');
+  if (btnPersonajes) {
+    btnPersonajes.addEventListener('click', () => {
+      window.location.href = 'personajes.html';
+    });
+  }
+  
+  // Verificar si hay personajes para mostrar el botón
+  const personajesGuardados = JSON.parse(localStorage.getItem('personajesDND')) || [];
+  if (personajesGuardados.length === 0) {
+    btnPersonajes.style.display = 'none';
+  }
 });
